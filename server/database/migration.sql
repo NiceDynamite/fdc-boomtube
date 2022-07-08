@@ -1,6 +1,6 @@
 DROP DATABASE IF EXISTS boomtube_db;
 CREATE DATABASE boomtube_db;
-\c
+\c boomtube_db
 
 DROP TABLE IF EXISTS comments;
 DROP TABLE IF EXISTS likes;
@@ -20,6 +20,8 @@ CREATE TABLE users(
 );
 
 CREATE TABLE videos(
+    video_id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users ON DELETE CASCADE,
     title VARCHAR(64),
     video_url VARCHAR(64),
     thumbnail_url VARCHAR(64),
