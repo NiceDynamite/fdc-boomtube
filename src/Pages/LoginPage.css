@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    background-color: white;
+    transform: translateY(-50px);
+    height: 100%;
+    width: 100%;
+}
+
+.login-container {
+    display: flex;
+    font-family: 'Bebas Neue', cursive;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    background: white;
+    min-width: 500px;
+    transform: translateY(-50px);
+}
+
+.login-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px
+}
+
+.welcome-title {
+    margin-bottom: 0;
+}
+
+.welcome-message {
+    margin-top: 0;
+    opacity: .6
+}
+
+.form-container {
+    padding-bottom: 20px;
+}
+
+#login-button {
+    display: flex;
+    gap: 20px;
+    width: 300px
+}
+
+.login-logo {
+    transform: translateX(-1px);
+}
