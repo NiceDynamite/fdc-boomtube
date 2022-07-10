@@ -1,17 +1,11 @@
 import React, { useState } from "react";
-import TextField from "@mui/material/TextField";
-import Button from '@mui/material/Button';
-import LoginIcon from '@mui/icons-material/Login'
-import KeyIcon from '@mui/icons-material/Key';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Box from '@mui/material/Box';
+import { TextField, Button, Box, InputAdornment, createTheme, ThemeProvider } from "@mui/material";
+import { Key, Login, AccountCircle } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
-import { InputAdornment } from "@mui/material";
 
 const theme = createTheme({
     palette: {
-        neutral: {
+        primary: {
             main: '#FF6600'
         }
     }
@@ -68,7 +62,6 @@ export default function LoginForm() {
                     variant="standard"
                     name="username"
                     type="text"
-                    color="neutral"
                     sx={{
                         width: '300px'
                     }}
@@ -78,7 +71,7 @@ export default function LoginForm() {
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
-                                <AccountCircleIcon />
+                                <AccountCircle />
                             </InputAdornment>
                         )
                     }}
@@ -90,7 +83,6 @@ export default function LoginForm() {
                     name="password"
                     type="password"
                     autoComplete="current-password"
-                    color="neutral"
                     sx={{
                         width: '300px'
                     }}
@@ -99,7 +91,7 @@ export default function LoginForm() {
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
-                                <KeyIcon />
+                                <Key />
                             </InputAdornment>
                         )
                     }}
@@ -108,8 +100,11 @@ export default function LoginForm() {
                     id="login-button"
                     variant="contained"
                     type="submit"
-                    color="neutral">
-                    <LoginIcon />
+                    startIcon={<Login />}
+                    sx={{
+                        width: '300px'
+                    }}
+                >
                     Login
                 </Button>
                 <Link
@@ -117,7 +112,7 @@ export default function LoginForm() {
                     style={{ textDecoration: 'none' }}>
                     <Button
                         variant="text"
-                        color="neutral">
+                    >
                         Create an Account
                     </Button>
                 </Link>
