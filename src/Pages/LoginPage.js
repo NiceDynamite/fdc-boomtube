@@ -1,28 +1,33 @@
 import LoginForm from "../Components/LoginForm";
-import './LoginPage.css'
+import './LoginPage.css';
 import Paper from "@mui/material/Paper";
+import Header from "../Components/header/HeaderMain";
+
 
 export default function LoginPage() {
     return (
-        <div className="login">
-            <div className="login-container">
-                <Paper
-                    elevation={6}
-                    sx={{
-                        minWidth: '400px',
-                        minHeight: '400px',
-                        borderRadius: '10px'
-                    }}
-                >
-                    <div className="login-title">
-                        <h1 className="welcome-title">Welcome Back</h1>
-                        <p className="welcome-message">Sign in to continue</p>
-                    </div>
-                    <div className="form-container">
-                        <LoginForm />
-                    </div>
-                </Paper>
+        <>
+            <Header/>
+            <div className="login">
+                <div className="login-container">
+                    <Paper
+                        elevation={6}
+                        sx={{
+                            minWidth: '400px',
+                            minHeight: '400px',
+                            borderRadius: '10px'
+                        }}
+                    >
+                        <div className="login-title">
+                            <h1 className="welcome-title">Welcome Back</h1>
+                            <p className="welcome-message">Sign in to continue</p>
+                        </div>
+                        <div className="form-container">
+                            <LoginForm />
+                        </div>
+                    </Paper>
+                </div>
             </div>
-        </div>
+        </>
     )
 }
