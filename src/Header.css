@@ -1,0 +1,12 @@
+.HeaderContainer {
+    display: flex;
+    flex-direction: row;
+    background-color: #ff6600;
+    padding: 7px;
+    padding-top: 3px;
+    padding-bottom: 45px;
+}
+.HeaderLogo {
+    width: 85px;
+    height: 85px;
+}
