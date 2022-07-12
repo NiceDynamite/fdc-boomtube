@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Box, TextField, Button, InputAdornment, ThemeProvider, createTheme } from '@mui/material'
 import { Email, Key, ArrowForward, AccountCircle } from '@mui/icons-material'
 import { Link } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 
 export default function SignupForm() {
@@ -17,6 +18,7 @@ export default function SignupForm() {
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const { signup } = useAuth()
 
     const handleUsernameChange = (e) => {
         e.preventDefault()
@@ -36,8 +38,9 @@ export default function SignupForm() {
     let people = []
 
     const handleSubmit = (e) => {
-
         e.preventDefault()
+
+        signup(email, password)
 
         let user = {
             username,
