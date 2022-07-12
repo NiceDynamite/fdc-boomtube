@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { TextField, Button, Box, InputAdornment, createTheme, ThemeProvider } from "@mui/material";
 import { Key, Login, AccountCircle } from '@mui/icons-material'
+import { useAuth } from "../contexts/AuthContext";
 import { Link } from 'react-router-dom'
 
 const theme = createTheme({
@@ -15,6 +16,7 @@ export default function LoginForm() {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const { login } = useAuth()
 
     const handleUsernameChange = (e) => {
         e.preventDefault()
@@ -35,6 +37,8 @@ export default function LoginForm() {
             username,
             password
         }
+
+        login(username, password)
 
         setPassword('')
         setUsername('')
