@@ -1,0 +1,52 @@
+body {
+    margin: 0;
+}
+
+.login,
+.signup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    background-color: #ADB5B0;
+    transform: translateY(-50px);
+    height: 110vh;
+    width: 100vw;
+}
+
+.login-container,
+.signup-container {
+    display: flex;
+    font-family: 'Bebas Neue', cursive;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    min-width: 500px;
+    transform: translateY(-50px);
+}
+
+.login-title,
+.signup-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px
+}
+
+.welcome-title {
+    margin-top: 40px;
+    margin-bottom: 0;
+}
+
+.welcome-message {
+    margin-top: 0;
+    margin-bottom: 30px;
+    opacity: .6
+}
+
+.form-container {
+    padding-bottom: 20px;
+}
