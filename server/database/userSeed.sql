@@ -11,7 +11,7 @@ INSERT INTO users
     (
         'Test',
         'pass',
-        'https://cdn2.thecatapi.com/images/McgHnSYS_.jpg',
+        'https://ds956fhn2jvzk.cloudfront.net/Christopher.jpg',
         'Some sample text',
         'howbout@no.com',
         false
@@ -30,7 +30,7 @@ INSERT INTO users
     (
         'Test',
         'pass',
-        'https://cdn2.thecatapi.com/images/5a.gif',
+        'https://ds956fhn2jvzk.cloudfront.net/Christopher.jpg',
         'Some sample text',
         'howbout@no.com',
         false
@@ -49,7 +49,7 @@ INSERT INTO users
     (
         'Test',
         'pass',
-        'https://cdn2.thecatapi.com/images/tcWReMaFB.jpg',
+        'https://ds956fhn2jvzk.cloudfront.net/Christopher.jpg',
         'Some sample text',
         'howbout@no.com',
         false
@@ -111,3 +111,5 @@ INSERT INTO users
         'howbout@no.com',
         false
     );
+
+    \i videoSeed.sql

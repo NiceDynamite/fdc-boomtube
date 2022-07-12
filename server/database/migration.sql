@@ -36,18 +36,21 @@ CREATE TABLE comments (
 );
 
 CREATE TABLE likes(
+    like_id SERIAL,
     user_id INTEGER REFERENCES users ON DELETE CASCADE,
     video_id INTEGER REFERENCES videos ON DELETE CASCADE
 );
 
 CREATE TABLE history(
+    history_id SERIAL,
     user_id INTEGER REFERENCES users ON DELETE CASCADE,
     video_id INTEGER REFERENCES videos ON DELETE CASCADE
 );
 
 CREATE TABLE favorites(
+    favorite_id SERIAL,
     user_id INTEGER REFERENCES users ON DELETE CASCADE,
     video_id INTEGER REFERENCES videos ON DELETE CASCADE
 );
 
-\i seed.sql
+\i userSeed.sql
