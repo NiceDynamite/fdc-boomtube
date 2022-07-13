@@ -4,8 +4,7 @@ INSERT INTO users
         password,
         avatar_url,
         about,
-        email,
-        darkmode
+        email
     )
     VALUES 
     (
@@ -13,8 +12,7 @@ INSERT INTO users
         'pass',
         'https://ds956fhn2jvzk.cloudfront.net/Christopher.jpg',
         'Some sample text',
-        'howbout@no.com',
-        false
+        'howbout@no.com'
     );
 
 INSERT INTO users 
@@ -33,7 +31,7 @@ INSERT INTO users
         'https://ds956fhn2jvzk.cloudfront.net/Christopher.jpg',
         'Some sample text',
         'howbout@no.com',
-        false
+        true
     );
 
 INSERT INTO users 
