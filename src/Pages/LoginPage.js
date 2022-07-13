@@ -1,7 +1,6 @@
 import LoginForm from "../Components/LoginForm";
 import './LoginPage.css'
-
-import Header from '../Components/header/HeaderMain.js';
+import Header from '../Components/header/HeaderAutho.js';
 
 
 
