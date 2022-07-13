@@ -57,6 +57,7 @@
 
   #home-page {
       background-color: #ADB5B0;
+<<<<<<< HEAD
   }
   
   .HomeLogo{
@@ -66,4 +67,6 @@
   .videoCloseButton {
     background-color: #ff6600;
     width: 80px;
+=======
+>>>>>>> added functionaility and components
   }
