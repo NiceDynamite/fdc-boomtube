@@ -10,3 +10,44 @@
     width: 85px;
     height: 85px;
 }
+
+.navbar {
+    background-color: #ff6600;
+    overflow: hidden;
+    text-align: center;
+    height: 50px;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .navbar a {
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  /* Change the color of links on hover */
+  .navbar a:hover {
+    background-color: #ddd;
+    color: black;
+    cursor: pointer;
+  }
+  
+  /* Add a color to the active/current link */
+  .navbar a.active {
+    background-color: #ddd;
+    color: #333;
+  }
+#input-form{
+    display: flex;
+    flex-direction: row;
+    height: 20px;
+}
+
+  #submitBtn { 
+    background-color: #595959;
+    color: #ddd;
+  }
+
+  
