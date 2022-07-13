@@ -3,6 +3,7 @@ import { TextField, Button, Box, InputAdornment, createTheme, ThemeProvider } fr
 import { Key, Login, AccountCircle } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
 
+
 const theme = createTheme({
     palette: {
         primary: {
@@ -44,6 +45,7 @@ export default function LoginForm() {
     }
 
     return (
+        <>
         <Box
             component="form"
             noValidate
@@ -118,5 +120,6 @@ export default function LoginForm() {
                 </Link>
             </ThemeProvider>
         </Box>
+        </>
     )
 }

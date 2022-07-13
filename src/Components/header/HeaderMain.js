@@ -1,4 +1,4 @@
-import logo from '../../Pages/boomtubelogo.png';
+import logo from './boomtubelogo.png';
 const Header = () => {
     return (
         <header className="HeaderContainer">
