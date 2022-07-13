@@ -1,9 +1,13 @@
 import SignupForm from "../Components/SignupForm"
 import { Paper } from '@mui/material'
+import Header from "../Components/header/HeaderMain";
 
 export default function SignupPage() {
     return (
+        <>
+        <Header />
         <div className="signup">
+            
             <div className="signup-container">
                 <Paper
                     elevation={6}
@@ -23,6 +27,7 @@ export default function SignupPage() {
                 </Paper>
             </div>
         </div>
+        </>
     )
 }
 
