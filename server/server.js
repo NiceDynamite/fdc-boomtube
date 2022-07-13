@@ -36,8 +36,68 @@ app.get('/users', async (req, res) => {
 app.get('/users/:user_id', async (req, res) => {
     try {
         let user_id = req.params.user_id
-        let data = await pool.query(`SELECT * FROM users WHERE user_id = $1`, [user_id])
+        let data = await pool.query(`
+            SELECT *
+            FROM users
+            WHERE user_id = $1
+            `, [user_id]
+        )
         res.json(data.rows)
+    } catch (error) {
+        console.log(error.message)
+        res.send(error.message)
+    }
+})
+
+//get one user and build out info by id
+app.post('/users', async (req, res) => {
+    try {
+        let user_id = req.body.user_id
+        
+        let userInfo = await pool.query(`
+            SELECT *
+            FROM users
+            WHERE user_id = $1
+            `, [user_id]
+        )
+        let userUploadCount = await pool.query(`
+            SELECT COUNT (*)
+            FROM likes
+            WHERE user_id = $1
+            `, [user_id]
+        )
+        let userUploads = await pool.query(`
+            SELECT *
+            FROM videos
+            WHERE user_id = $1
+            `, [user_id]
+        )
+        let userFavorites = await pool.query(`
+            SELECT videos.video_id, title, thumbnail_url
+            FROM videos, favorites
+            WHERE favorites.video_id = videos.video_id
+            AND favorites.user_id = $1
+            `, [user_id]
+        )
+        let userHistory = await pool.query(`
+            SELECT videos.video_id, title, thumbnail_url
+            FROM videos, history
+            WHERE history.video_id = videos.video_id
+            AND history.user_id = $1
+            `, [user_id]
+        )
+        let user = {
+            username: userInfo.rows[0].username,
+            about: userInfo.rows[0].about,
+            avatar_url: userInfo.rows[0].avatar_url,
+            darkmode: userInfo.rows[0].darkmode,
+            uploads_count: userUploadCount.rows[0].count,
+            uploads: userUploads.rows,
+            favorites: userFavorites.rows,
+            history: userHistory.rows
+
+        }
+        res.json(user)
     } catch (error) {
         console.log(error.message)
         res.send(error.message)
@@ -46,7 +106,7 @@ app.get('/users/:user_id', async (req, res) => {
 
 ///////////////////////////////////////////////////////////////////////////// videos /////////////////////////////////////////////////////////////////////////////
 
-//get/////////////
+//get////////////////////////
 
 //get all videos
 app.get('/videos', async (req, res) => {

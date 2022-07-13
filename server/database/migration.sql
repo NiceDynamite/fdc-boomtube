@@ -16,7 +16,7 @@ CREATE TABLE users(
     avatar_url VARCHAR(64),
     about TEXT,
     email VARCHAR(25),
-    darkmode BOOLEAN
+    darkmode BOOLEAN DEFAULT false
 );
 
 CREATE TABLE videos(
