@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom"
 import LoginPage from "./Pages/LoginPage";
 import SignupPage from "./Pages/SignupPage";
 import HomePage from "./Pages/HomePage";
+import ReactPlayer from "react-player";
 
 export default function App() {
     return (
