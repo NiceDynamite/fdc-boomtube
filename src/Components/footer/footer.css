@@ -1,0 +1,47 @@
+footer {
+    background-color: #ADB5B0;
+}
+
+#createdBy {
+    text-align: center;
+}
+
+#profiles {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#price-div {
+    font-family: sans-serif;
+    padding-right: 15px;
+    text-align: center;
+}
+
+#warren-div {
+    font-family: sans-serif;
+    padding-right: 15px;
+    padding-left: 15px;
+    text-align: center;
+}
+
+#nichols-div {
+    font-family: sans-serif;
+    padding-right: 15px;
+    padding-left: 15px;
+    text-align: center;
+}
+
+#miller-div {
+    font-family: sans-serif;
+    padding-right: 15px;
+    padding-left: 15px;
+    text-align: center;
+}
+
+#odell-div {
+    font-family: sans-serif;
+    padding-right: 15px;
+    padding-left: 15px;
+    text-align: center;
+}

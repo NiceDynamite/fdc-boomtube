@@ -24,7 +24,7 @@ body {
     justify-content: center;
     padding: 15px;
     min-width: 500px;
-    transform: translateY(-50px);
+    transform: translateY(-150px);
 }
 
 .login-title,

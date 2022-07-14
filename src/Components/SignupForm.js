@@ -1,10 +1,14 @@
 import { useState } from 'react';
-import { Box, TextField, Button, InputAdornment, ThemeProvider, createTheme } from '@mui/material'
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios'
+import { Box, TextField, Button, InputAdornment, ThemeProvider, createTheme, Alert } from '@mui/material'
 import { Email, Key, ArrowForward, AccountCircle } from '@mui/icons-material'
 import { Link } from 'react-router-dom';
 
 
 export default function SignupForm() {
+
+    const nav = useNavigate()
 
     let theme = createTheme({
         palette: {
@@ -14,45 +18,63 @@ export default function SignupForm() {
         }
     })
 
-    const [username, setUsername] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [user, setUser] = useState({
+        username: '',
+        email: '',
+        password: '',
+    })
 
-    const handleUsernameChange = (e) => {
+    const [status, setStatus] = useState({
+        error: false,
+        msg: '',
+        registered: false,
+    })
+
+    const handleFieldChange = (e) => {
         e.preventDefault()
-        setUsername(e.target.value)
+        setUser({
+            ...user,
+            [e.target.name]: e.target.value
+        })
     }
-
-    const handleEmailChange = (e) => {
-        e.preventDefault()
-        setEmail(e.target.value)
-    }
-
-    const handlePasswordChange = (e) => {
-        e.preventDefault()
-        setPassword(e.target.value)
-    }
-
-    let people = []
 
     const handleSubmit = (e) => {
-
         e.preventDefault()
 
-        let user = {
-            username,
-            email,
-            password
-        }
+        axios.post("http://localhost:5001/register", { username: user.username, email: user.email, password: user.password })
+            .then((response) => {
 
-        setUsername('')
-        setEmail('')
-        setPassword('')
+                setStatus({
+                    ...status,
+                    error: false,
+                    msg: response.data.msg,
+                    registered: true
+                })
 
-        people.push(user)
+                setUser({
+                    ...user,
+                    username: '',
+                    email: '',
+                    password: ''
+                })
 
+                setTimeout(() => {
+                    nav('/')
+                }, 2000)
+
+                localStorage.setItem("token", `Bearer ${response.data.token}`)
+
+            }).catch((error) => {
+                console.log(error)
+                setStatus({
+                    ...status,
+                    error: true,
+                    msg: error.response.data.msg || error.response.data.errors[0].msg,
+                    registered: false
+                })
+
+            })
     }
-
 
     return (
         <Box
@@ -68,14 +90,33 @@ export default function SignupForm() {
             }}
         >
             <ThemeProvider theme={theme}>
+                {status.registered &&
+                    <Alert
+                        severity='success'
+                        variant='outlined'
+                        sx={{
+                            width: 'fit-content'
+                        }}
+                    >
+                        {status.msg}
+                    </Alert>}
+                {status.error &&
+                    <Alert
+                        severity='error'
+                        variant='outlined'
+                        sx={{
+                            width: 'fit-content'
+                        }}
+                    >{status.msg}</Alert>}
                 <TextField
                     id="signup-username"
                     type="text"
                     autoComplete='off'
                     label="Username"
                     variant='standard'
-                    value={username}
-                    onChange={handleUsernameChange}
+                    name="username"
+                    value={user.username}
+                    onChange={handleFieldChange}
                     sx={{
                         width: '300px'
                     }}
@@ -92,8 +133,9 @@ export default function SignupForm() {
                     type="email"
                     label="Email"
                     variant='standard'
-                    value={email}
-                    onChange={handleEmailChange}
+                    name="email"
+                    value={user.email}
+                    onChange={handleFieldChange}
                     sx={{
                         width: '300px'
                     }}
@@ -111,8 +153,9 @@ export default function SignupForm() {
                     label="Password"
                     autoComplete='new-password'
                     variant='standard'
-                    value={password}
-                    onChange={handlePasswordChange}
+                    name="password"
+                    value={user.password}
+                    onChange={handleFieldChange}
                     sx={{
                         width: '300px'
                     }}

@@ -1,11 +1,11 @@
 import SignupForm from "../Components/SignupForm"
 import { Paper } from '@mui/material'
-import Header from "../Components/header/HeaderMain";
+import Header from "../Components/header/HeaderAutho"
 
 export default function SignupPage() {
     return (
         <>
-        <Header />
+        <Header/>
         <div className="signup">
             
             <div className="signup-container">

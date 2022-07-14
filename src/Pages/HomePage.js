@@ -1,15 +1,17 @@
 
 import Footer from '../Components/Footer/Footer';
 import Header from '../Components/header/HeaderMain';
-import './HomePage.css'
-
+import './Homepage.css'
+const userName = () => {
+ localStorage.setItem('userName', 'bob');
+}
 const HomePage = () => {
     return(
         <div id="home-page">
             <Header />
             <div className="container">
-                <div>Video 1</div>
-                <div>Video 2</div>
+                <div>Video 1{userName()}</div>
+                <div>Video 2{` ${localStorage.userName}`}</div>
                 <div>Video 3</div>
                 <div>Video 4</div>
                 <div>Video 5</div>
