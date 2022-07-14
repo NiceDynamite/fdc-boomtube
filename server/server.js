@@ -11,17 +11,66 @@ const jwt = require('jsonwebtoken')
 const { check, validationResult } = require('express-validator')
 const bycrpt = require('bcrypt')
 const jwtGenerator = require('./utils/jwtGenerator')
+const aws = require('aws-sdk')
+const crypto = require('crypto')
+const { promisify } = require('util')
+const randomBytes = promisify(crypto.randomBytes)
 
+//bucket params setting
+const region = process.env.BUCKET_REGION
+const bucketName = 's3-tutorial-temporary'
+const accessKeyId = process.env.AWS_ACCESS_KEY_ID
+const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY
+//bucket connection
+const s3 = new aws.S3({
+    region,
+    accessKeyId,
+    secretAccessKey,
+    signatureVersion: 'v4'
+})
 //app setup
 app.use(cors())
 app.use(express.json())
 app.use(express.static('public'))
+
+async function generateUploadURL() {
+    const rawBytes = await randomBytes(16)
+    const imageName = rawBytes.toString('hex')  
+    console.log(`imageName: ${imageName}`)
+    console.log(`bucketName: ${bucketName}`)
+    const params = ({
+        Bucket: bucketName,
+        Key: imageName,
+        Expires: 60
+    })
+
+    const uploadURL = await s3.getSignedUrlPromise('putObject', params)
+    console.log(uploadURL)
+    return uploadURL
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////       ROUTES       ///////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////////////// users ///////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////new entries, not sure where to sort them here//////////////////////////////////////////////////////////////////////////////////////
+
+//returns a url from the bucket that can be used for a location to upload the file
+app.get('/s3Url', async (req, res) => {
+    const url = await generateUploadURL()
+    res.send({url})
+})
+
+//will eventually change the avatar url for the user who uploads it
+app.post('/image-upload', async (req, res) => {
+    //console.log(req.body.avatar_url)
+    //add image_url, title, thumbnail_url, description, UserID(FK) to database
+    //for testing purposes we will fill in most of these values with filler data at first
+})
+
+
 
 //get /////////////////
 
@@ -214,6 +263,32 @@ app.get('/video-array/:length', async (req, res) => {
         console.log(error.message)
         res.send(error.message)
     }
+})
+//post/////////////////////////////
+//currently just logs the request body data, but needs to put it into the database
+app.post('/video-upload', async (req, res) => {
+    //console.log(`req.body.user_id: ${req.body.user_id}`)
+    //console.log(`req.body.title: ${req.body.title}`)
+    //console.log(`req.body.video_url: ${req.body.video_url}`)
+    //console.log(`req.body.thumbnail_url: ${req.body.thumbnail_url}`)
+    //console.log(`req.body.description: ${req.body.description}`)
+    try {
+        let user_id = req.body.user_id        
+        let title =  req.body.title
+        let video_url = req.body.video_url
+        let thumbnail_url = req.body.thumbnail_url
+        let description = req.body.description
+        await pool.query(`
+            INSERT INTO videos (user_id, title, video_url, thumbnail_url, description) VALUES ($1, $2, $3, $4, $5)
+            `, [user_id, title, video_url, thumbnail_url, description]
+        )
+        res.json('Video Uploaded')
+    } catch (error) {
+        console.log(error.message)
+        res.send(error.messageq)
+    }
+    //add video_url, thumbnail, etc to database
+    //for testing purposes we will fill in most of these values with filler data at first
 })
 
 //patch///////////////////////////
