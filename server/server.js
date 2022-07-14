@@ -91,6 +91,7 @@ app.post('/users', authenticateToken, async (req, res) => {
             `, [user_id]
         )
         let user = {
+            user_id: user_id,
             username: userInfo.rows[0].username,
             about: userInfo.rows[0].about,
             avatar_url: userInfo.rows[0].avatar_url,
@@ -99,9 +100,48 @@ app.post('/users', authenticateToken, async (req, res) => {
             uploads: userUploads.rows,
             favorites: userFavorites.rows,
             history: userHistory.rows
-
         }
         res.json(user)
+    } catch (error) {
+        console.log(error.message)
+        res.send(error.message)
+    }
+})
+
+//patch////////////////////////////
+
+//patch one user by user id
+app.patch('/users/:user_id', async (req, res) => {
+    try {
+        let user_id = req.params.user_id
+        let username = req.body.username
+        let about = req.body.about
+        let avatar_url = req.body.avatar_url
+        await pool.query(`
+            UPDATE users
+            SET username = $1, about = $2, avatar_url = $3
+            WHERE user_id = $4
+            `, [username, about, avatar_url, user_id]
+        )
+        res.json(`Updated`)
+    } catch (error) {
+        console.log(error.message)
+        res.send(error.message)
+    }
+})
+
+//delete///////////////////////////
+
+//deletes one user by user id
+app.delete('/users/:user_id', async (req, res) => {
+    try {
+        let user_id = req.params.user_id
+        await pool.query(`
+        DELETE FROM users
+        WHERE user_id = $1
+        `, [user_id]
+    )
+    res.json(`Deleted`)
     } catch (error) {
         console.log(error.message)
         res.send(error.message)
@@ -123,7 +163,7 @@ app.get('/videos', async (req, res) => {
     }
 })
 
-//get one video
+//get one video by id
 app.get('/videos/:video_id', async (req, res) => {
     try {
         let video_id = req.params.video_id
@@ -176,6 +216,28 @@ app.get('/video-array/:length', async (req, res) => {
     }
 })
 
+//patch///////////////////////////
+
+//patch one video by video id
+app.patch('/videos/:video_id', async (req, res) => {
+    try {
+        let video_id = req.params.video_id
+        let title =  req.body.title
+        let thumbnail_url = req.body.thumbnail_url
+        let description = req.body.description
+        await pool.query(`
+            UPDATE videos
+            SET title = $1, thumbnail_url = $2, description = $3
+            WHERE video_id = $4
+            `, [title, thumbnail_url, description, video_id]
+        )
+        res.json('Video Updated')
+    } catch (error) {
+        console.log(error.message)
+        res.send(error.messageq)
+    }
+})
+
 ////////////////////////////////////////////////////////////////////////// comments ///////////////////////////////////////////////////////////////////////////////
 
 //get/////////////////////////////
@@ -212,6 +274,43 @@ app.post('/comments/:user_id/:video_id', async (req, res) => {
     }
 })
 
+//patch//////////////////////////////
+
+//patch one comment by comment id
+app.patch('/comments/:comment_id', async (req, res) => {
+    try {
+        let comment_id = req.params.comment_id
+        let comment_text = req.body.comment_text
+        await pool.query(`
+            UPDATE comments
+            SET comment_text = $1
+            WHERE comment_id = $2
+            `, [comment_text, comment_id]
+        )
+        res.json(`Edited`)
+    } catch (error) {
+        console.log(error.message)
+        res.send(error.message)
+    }
+})
+
+//delete////////////////////////////
+
+//deletes one from comment by comment id
+app.delete('/comments/:comment_id', async (req, res) => {
+    try {
+        let comment_id = req.params.comment_id
+        await pool.query(`
+            DELETE FROM comments
+            WHERE comment_id = $1
+            `, [comment_id]
+        )
+        res.json(`Deleted`)
+    } catch (error) {
+        console.log(error.message)
+        res.send(error.message)
+    }
+})
 
 /////////////////////////////////////////////////////////////////////// likes /////////////////////////////////////////////////////////
 
@@ -241,13 +340,32 @@ app.post('/likes/:user_id/:video_id', async (req, res) => {
             VALUES ($1, $2)
             `, [user_id, video_id]
         )
-        res.send(`+1`)
+        res.json(`+1`)
     } catch (error) {
         console.log(error.message)
         res.send(error.message)
     }
 })
 
+//delete////////////////////////////
+
+//deletes one like by user id and video id
+app.delete('/likes/:user_id/:video_id', async (req, res) => {
+    try {
+        let user_id = req.params.user_id
+        let video_id = req.params.video_id
+        await pool.query(`
+            DELETE FROM likes
+            WHERE user_id = $1
+            AND video_id = $2
+            `, [user_id, video_id]
+        )
+        res.json(`-1`)
+    } catch (error) {
+        console.log(error.message)
+        res.send(error.message)
+    }
+})
 
 /////////////////////////////////////////////////////////////////////// history ///////////////////////////////////////////////////////
 
@@ -292,6 +410,24 @@ app.post('/history/:user_id/:video_id', async (req, res) => {
     }
 })
 
+//delete/////////////////////////////////
+
+//deletes one video from history by history id
+app.delete('/history/:history_id', async (req, res) => {
+    try {
+        let history_id = req.params.history_id
+        await pool.query(`
+            DELETE FROM history
+            WHERE history_id = $1
+            `, [history_id]
+        )
+        res.json(`Deleted`)
+    } catch (error) {
+        console.log(error.message)
+        res.send(error.message)
+    }
+})
+
 
 ///////////////////////////////////////////////////////////////////// favorites //////////////////////////////////////////////////////
 
@@ -328,6 +464,24 @@ app.post('/favorites/:user_id/:video_id', async (req, res) => {
             `, [user_id, video_id]
         )
         res.send(`Added to Favorites`)
+    } catch (error) {
+        console.log(error.message)
+        res.send(error.message)
+    }
+})
+
+//delete/////////////////////////
+
+//delete from favorites by favorite id
+app.delete('/favorites/:favorite_id', async (req, res) => {
+    try {
+        let favorite_id = req.params.favorite_id
+        await pool.query(`
+            DELETE FROM favorites
+            WHERE favorite_id = $1
+            `, [favorite_id]
+        )
+        res.json(`Deleted`)
     } catch (error) {
         console.log(error.message)
         res.send(error.message)
