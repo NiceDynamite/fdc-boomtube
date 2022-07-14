@@ -373,10 +373,10 @@ app.post('/register', [
 
         const token = jwtGenerator(newUser.rows[0].user_id)
 
-        res.json({ msg: 'Account Created Successfully', token })
+        res.json({ msg: 'Account Created Successfully', id: newUser.rows[0].user_id, token })
     } catch (err) {
         console.error(err.message)
-        res.send(500).send({ msg: 'Server is having troubles' })
+        res.status(500).send({ msg: 'Server is having troubles' })
     }
 })
 
