@@ -373,7 +373,7 @@ app.post('/register', [
 
         const token = jwtGenerator(newUser.rows[0].user_id)
 
-        res.json({ msg: 'Account Created Successfuly', token })
+        res.json({ msg: 'Account Created Successfully', token })
     } catch (err) {
         console.error(err.message)
         res.send(500).send({ msg: 'Server is having troubles' })
@@ -402,7 +402,7 @@ app.post('/login', async (req, res) => {
 
     } catch (err) {
         console.error(err.message)
-        res.send(500).send({ msg: 'Server is having troubles' })
+        res.status(500).send({ msg: 'Server is having troubles' })
     }
 })
 
@@ -418,63 +418,7 @@ function authenticateToken(req, res, next) {
             return res.sendStatus(403)
         }
 
-        req.user
-
         next()
     })
 }
 
-//get one user and build out info by id
-app.post('/users', authenticateToken, async (req, res) => {
-    try {
-        let user_id = req.body.user_id
-
-        let userInfo = await pool.query(
-            `SELECT * 
-            FROM users 
-            WHERE user_id = $1;
-            `, [user_id]
-        )
-        let userUploadCount = await pool.query(`
-            SELECT COUNT (*)
-            FROM likes
-            WHERE user_id = $1
-            `, [user_id]
-        )
-        let userUploads = await pool.query(`
-            SELECT *
-            FROM videos
-            WHERE user_id = $1
-            `, [user_id]
-        )
-        let userFavorites = await pool.query(`
-            SELECT videos.video_id, title, thumbnail_url
-            FROM videos, favorites
-            WHERE favorites.video_id = videos.video_id
-            AND favorites.user_id = $1
-            `, [user_id]
-        )
-        let userHistory = await pool.query(`
-            SELECT videos.video_id, title, thumbnail_url
-            FROM videos, history
-            WHERE history.video_id = videos.video_id
-            AND history.user_id = $1
-            `, [user_id]
-        )
-        let user = {
-            username: userInfo.rows[0].username,
-            about: userInfo.rows[0].about,
-            avatar_url: userInfo.rows[0].avatar_url,
-            darkmode: userInfo.rows[0].darkmode,
-            uploads_count: userUploadCount.rows[0].count,
-            uploads: userUploads.rows,
-            favorites: userFavorites.rows,
-            history: userHistory.rows
-
-        }
-        res.json(user)
-    } catch (error) {
-        console.log(error.message)
-        res.send(error.message)
-    }
-})
