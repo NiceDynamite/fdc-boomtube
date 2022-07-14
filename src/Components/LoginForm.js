@@ -103,7 +103,7 @@ export default function LoginForm() {
                             severity='success'
                             variant='outlined'
                             sx={{
-                                width: '300px'
+                                width: 'fit-content'
                             }}
                         >
                             {status.msg}
@@ -113,8 +113,7 @@ export default function LoginForm() {
                             variant="outlined"
                             severity="error"
                             sx={{
-                                width: '300px',
-                                alignSelf: 'center'
+                                width: 'fit-content'
                             }}
                         >
                             {status.msg}

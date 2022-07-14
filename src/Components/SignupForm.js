@@ -80,7 +80,7 @@ export default function SignupForm() {
         <Box
             component="form"
             onSubmit={handleSubmit}
-            Validate
+            noValidate
             autoComplete="off"
             sx={{
                 display: 'flex',
@@ -95,7 +95,7 @@ export default function SignupForm() {
                         severity='success'
                         variant='outlined'
                         sx={{
-                            width: '300px'
+                            width: 'fit-content'
                         }}
                     >
                         {status.msg}
@@ -104,6 +104,9 @@ export default function SignupForm() {
                     <Alert
                         severity='error'
                         variant='outlined'
+                        sx={{
+                            width: 'fit-content'
+                        }}
                     >{status.msg}</Alert>}
                 <TextField
                     id="signup-username"
