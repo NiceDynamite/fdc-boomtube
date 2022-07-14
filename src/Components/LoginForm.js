@@ -5,6 +5,7 @@ import { TextField, Button, Box, InputAdornment, createTheme, ThemeProvider, Ale
 import { Key, Login, AccountCircle } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
 
+
 const theme = createTheme({
     palette: {
         primary: {
@@ -84,100 +85,102 @@ export default function LoginForm() {
     }
 
     return (
-        <Box
-            component="form"
-            noValidate
-            autoComplete="off"
-            onSubmit={handleSubmit}
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: '20px'
-            }}>
-            <ThemeProvider theme={theme}>
-                {status.loggedIn &&
-                    <Alert
-                        severity='success'
-                        variant='outlined'
+        <>
+            <Box
+                component="form"
+                noValidate
+                autoComplete="off"
+                onSubmit={handleSubmit}
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '20px'
+                }}>
+                <ThemeProvider theme={theme}>
+                    {status.loggedIn &&
+                        <Alert
+                            severity='success'
+                            variant='outlined'
+                            sx={{
+                                width: '300px'
+                            }}
+                        >
+                            {status.msg}
+                        </Alert>}
+                    {status.error &&
+                        <Alert
+                            variant="outlined"
+                            severity="error"
+                            sx={{
+                                width: '300px',
+                                alignSelf: 'center'
+                            }}
+                        >
+                            {status.msg}
+                        </Alert>}
+                    <TextField
+                        id="username-input"
+                        label="Username"
+                        variant="standard"
+                        name="username"
+                        type="text"
+                        sx={{
+                            width: '300px'
+                        }}
+                        autoComplete="off"
+                        value={user.username}
+                        onChange={handleFieldChange}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <AccountCircle />
+                                </InputAdornment>
+                            )
+                        }}
+                    />
+                    <TextField
+                        id="password-input"
+                        label="Password"
+                        variant="standard"
+                        name="password"
+                        type="password"
+                        autoComplete="current-password"
+                        sx={{
+                            width: '300px'
+                        }}
+                        value={user.password}
+                        onChange={handleFieldChange}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <Key />
+                                </InputAdornment>
+                            )
+                        }}
+                    />
+                    <Button
+                        id="login-button"
+                        variant="contained"
+                        type="submit"
+                        startIcon={<Login />}
                         sx={{
                             width: '300px'
                         }}
                     >
-                        {status.msg}
-                    </Alert>}
-                {status.error &&
-                    <Alert
-                        variant="outlined"
-                        severity="error"
-                        sx={{
-                            width: '300px',
-                            alignSelf: 'center'
-                        }}
-                    >
-                        {status.msg}
-                    </Alert>}
-                <TextField
-                    id="username-input"
-                    label="Username"
-                    variant="standard"
-                    name="username"
-                    type="text"
-                    sx={{
-                        width: '300px'
-                    }}
-                    autoComplete="off"
-                    value={user.username}
-                    onChange={handleFieldChange}
-                    InputProps={{
-                        startAdornment: (
-                            <InputAdornment position="start">
-                                <AccountCircle />
-                            </InputAdornment>
-                        )
-                    }}
-                />
-                <TextField
-                    id="password-input"
-                    label="Password"
-                    variant="standard"
-                    name="password"
-                    type="password"
-                    autoComplete="current-password"
-                    sx={{
-                        width: '300px'
-                    }}
-                    value={user.password}
-                    onChange={handleFieldChange}
-                    InputProps={{
-                        startAdornment: (
-                            <InputAdornment position="start">
-                                <Key />
-                            </InputAdornment>
-                        )
-                    }}
-                />
-                <Button
-                    id="login-button"
-                    variant="contained"
-                    type="submit"
-                    startIcon={<Login />}
-                    sx={{
-                        width: '300px'
-                    }}
-                >
-                    Login
-                </Button>
-                <Link
-                    to="/signup"
-                    style={{ textDecoration: 'none' }}>
-                    <Button
-                        variant="text"
-                    >
-                        Create an Account
+                        Login
                     </Button>
-                </Link>
-            </ThemeProvider>
-        </Box>
+                    <Link
+                        to="/signup"
+                        style={{ textDecoration: 'none' }}>
+                        <Button
+                            variant="text"
+                        >
+                            Create an Account
+                        </Button>
+                    </Link>
+                </ThemeProvider>
+            </Box>
+        </>
     )
 }
