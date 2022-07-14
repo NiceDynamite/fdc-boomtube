@@ -1,5 +1,11 @@
+footer {
+    background-color: #ff6600;
+}
+
 #createdBy {
     text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: medium;
 }
 
 #profiles {
@@ -9,35 +15,40 @@
 }
 
 #price-div {
-    font-family: sans-serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     padding-right: 15px;
     text-align: center;
+    font-size: large;
 }
 
 #warren-div {
-    font-family: sans-serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     padding-right: 15px;
     padding-left: 15px;
     text-align: center;
+    font-size: large;
 }
 
 #nichols-div {
-    font-family: sans-serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     padding-right: 15px;
     padding-left: 15px;
     text-align: center;
+    font-size: large;
 }
 
 #miller-div {
-    font-family: sans-serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     padding-right: 15px;
     padding-left: 15px;
     text-align: center;
+    font-size: large;
 }
 
 #odell-div {
-    font-family: sans-serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     padding-right: 15px;
     padding-left: 15px;
     text-align: center;
+    font-size: large;
 }
