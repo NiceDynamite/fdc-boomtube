@@ -34,10 +34,16 @@ export default function App() {
     return (
         <> 
             <Routes>
+<<<<<<< HEAD
                 <Route path="/login" element={<LoginPage userData={userData} setUserData={setUserData}/>} />
                 <Route path="/signup" element={<SignupPage userData={userData} setUserData={setUserData}/>} />
                 <Route path="/home" element={<HomePage videos={videosState} userData={userData} setUserData={setUserData}/>} />
                 <Route path="/myprofile" element={<MyProfile userData={userData} setUserData={setUserData}/>} /> 
+=======
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/signup" element={<SignupPage />} />
+                <Route path="/" element={<HomePage />} />
+>>>>>>> added my components and routes
             </Routes>
         </>
     )
