@@ -1,0 +1,26 @@
+  #input-form {
+      text-align: center;
+  }
+
+  .input-field {
+      transition: width 0.5s ease-in-out;
+  }
+
+  .input-field:focus {
+      width: 50%;
+  }
+
+  .container {
+    padding-top: 10%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 5px;
+  }
+  .container div {
+    background-color: lightgray;
+    aspect-ratio: 1;
+  }
+
+  #home-page {
+      background-color: #ADB5B0;
+  }
