@@ -110,6 +110,9 @@ app.post('/users', authenticateToken, async (req, res) => {
 })
 
 <<<<<<< HEAD:server.js
+<<<<<<< HEAD:server.js
+=======
+>>>>>>> all routes "up"; password collum of users refactored to handle encripted pass:server/server.js
 //patch////////////////////////////
 
 //patch one user by user id
@@ -132,8 +135,11 @@ app.patch('/users/:user_id', async (req, res) => {
     }
 })
 
+<<<<<<< HEAD:server.js
 =======
 >>>>>>> adds delete routes:server/server.js
+=======
+>>>>>>> all routes "up"; password collum of users refactored to handle encripted pass:server/server.js
 //delete///////////////////////////
 
 //deletes one user by user id
@@ -279,6 +285,9 @@ app.post('/comments/:user_id/:video_id', async (req, res) => {
 })
 
 <<<<<<< HEAD:server.js
+<<<<<<< HEAD:server.js
+=======
+>>>>>>> all routes "up"; password collum of users refactored to handle encripted pass:server/server.js
 //patch//////////////////////////////
 
 //patch one comment by comment id
@@ -299,8 +308,11 @@ app.patch('/comments/:comment_id', async (req, res) => {
     }
 })
 
+<<<<<<< HEAD:server.js
 =======
 >>>>>>> adds delete routes:server/server.js
+=======
+>>>>>>> all routes "up"; password collum of users refactored to handle encripted pass:server/server.js
 //delete////////////////////////////
 
 //deletes one from comment by comment id
