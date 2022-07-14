@@ -4,7 +4,7 @@ INSERT INTO videos
     title,
     video_url,
     thumbnail_url,
-    descrition
+    description
 )
 VALUES
 (
@@ -21,7 +21,7 @@ INSERT INTO videos
     title,
     video_url,
     thumbnail_url,
-    descrition
+    description
 )
 VALUES
 (
@@ -38,7 +38,7 @@ INSERT INTO videos
     title,
     video_url,
     thumbnail_url,
-    descrition
+    description
 )
 VALUES
 (
@@ -55,7 +55,7 @@ INSERT INTO videos
     title,
     video_url,
     thumbnail_url,
-    descrition
+    description
 )
 VALUES
 (
@@ -72,7 +72,7 @@ INSERT INTO videos
     title,
     video_url,
     thumbnail_url,
-    descrition
+    description
 )
 VALUES
 (
@@ -89,7 +89,7 @@ INSERT INTO videos
     title,
     video_url,
     thumbnail_url,
-    descrition
+    description
 )
 VALUES
 (
@@ -106,7 +106,7 @@ INSERT INTO videos
     title,
     video_url,
     thumbnail_url,
-    descrition
+    description
 )
 VALUES
 (
@@ -123,7 +123,7 @@ INSERT INTO videos
     title,
     video_url,
     thumbnail_url,
-    descrition
+    description
 )
 VALUES
 (
@@ -140,7 +140,7 @@ INSERT INTO videos
     title,
     video_url,
     thumbnail_url,
-    descrition
+    description
 )
 VALUES
 (
@@ -157,7 +157,7 @@ INSERT INTO videos
     title,
     video_url,
     thumbnail_url,
-    descrition
+    description
 )
 VALUES
 (
@@ -174,7 +174,7 @@ INSERT INTO videos
     title,
     video_url,
     thumbnail_url,
-    descrition
+    description
 )
 VALUES
 (
@@ -191,7 +191,7 @@ INSERT INTO videos
     title,
     video_url,
     thumbnail_url,
-    descrition
+    description
 )
 VALUES
 (
