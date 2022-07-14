@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users(
     user_id SERIAL PRIMARY KEY,
     username VARCHAR(25),
-    password VARCHAR(25),
+    password VARCHAR(255),
     avatar_url VARCHAR(64),
     about TEXT,
     email VARCHAR(25),
