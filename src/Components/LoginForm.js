@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { TextField, Button, Box, InputAdornment, createTheme, ThemeProvider } from "@mui/material";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { TextField, Button, Box, InputAdornment, createTheme, ThemeProvider, Alert } from "@mui/material";
 import { Key, Login, AccountCircle } from '@mui/icons-material'
-import { useAuth } from "../contexts/AuthContext";
 import { Link } from 'react-router-dom'
 
 const theme = createTheme({
@@ -14,37 +15,72 @@ const theme = createTheme({
 
 export default function LoginForm() {
 
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-    const { login } = useAuth()
+    const nav = useNavigate()
 
-    const handleUsernameChange = (e) => {
+    const [user, setUser] = useState({
+        username: '',
+        password: ''
+    })
+
+    const [status, setStatus] = useState({
+        error: false,
+        msg: '',
+        loggedIn: false,
+    })
+
+    const handleFieldChange = (e) => {
         e.preventDefault()
-        setUsername(e.target.value);
+        setUser({
+            ...user,
+            [e.target.name]: e.target.value
+        })
     }
-
-    const handlePasswordChange = (e) => {
-        e.preventDefault()
-        setPassword(e.target.value);
-    }
-
-    let person = []
 
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        let obj = {
-            username,
-            password
-        }
+        axios.post('http://localhost:5001/login', { username: user.username, password: user.password })
+            .then((response) => {
+                setStatus({
+                    ...status,
+                    error: false,
+                    msg: response.data.msg,
+                    loggedIn: true
+                })
 
-        login(username, password)
+                setUser({
+                    ...user,
+                    username: '',
+                    password: ''
+                })
 
-        setPassword('')
-        setUsername('')
+                axios.post('http://localhost:5001/users', {
+                    user_id: response.data.id
+                },
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'authorization': ` Bearer ${response.data.token}`
+                        },
 
-        person.push(obj)
+                    }).then((response) => {
+                        console.log(response)
+                    })
 
+                setTimeout(() => {
+                    nav('/')
+                }, 2000)
+
+                localStorage.setItem("token", `Bearer ${response.data.token}`)
+            }
+            ).catch((error) => {
+                setStatus({
+                    ...status,
+                    error: true,
+                    msg: error.response.data.msg,
+                    loggedIn: false
+                })
+            })
     }
 
     return (
@@ -60,6 +96,27 @@ export default function LoginForm() {
                 gap: '20px'
             }}>
             <ThemeProvider theme={theme}>
+                {status.loggedIn &&
+                    <Alert
+                        severity='success'
+                        variant='outlined'
+                        sx={{
+                            width: '300px'
+                        }}
+                    >
+                        {status.msg}
+                    </Alert>}
+                {status.error &&
+                    <Alert
+                        variant="outlined"
+                        severity="error"
+                        sx={{
+                            width: '300px',
+                            alignSelf: 'center'
+                        }}
+                    >
+                        {status.msg}
+                    </Alert>}
                 <TextField
                     id="username-input"
                     label="Username"
@@ -70,8 +127,8 @@ export default function LoginForm() {
                         width: '300px'
                     }}
                     autoComplete="off"
-                    value={username}
-                    onChange={handleUsernameChange}
+                    value={user.username}
+                    onChange={handleFieldChange}
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
@@ -90,8 +147,8 @@ export default function LoginForm() {
                     sx={{
                         width: '300px'
                     }}
-                    value={password}
-                    onChange={handlePasswordChange}
+                    value={user.password}
+                    onChange={handleFieldChange}
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
