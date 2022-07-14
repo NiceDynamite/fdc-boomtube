@@ -100,9 +100,30 @@ app.post('/users', authenticateToken, async (req, res) => {
             uploads: userUploads.rows,
             favorites: userFavorites.rows,
             history: userHistory.rows
-
         }
         res.json(user)
+    } catch (error) {
+        console.log(error.message)
+        res.send(error.message)
+    }
+})
+
+//patch////////////////////////////
+
+//patch one user by user id
+app.patch('/users/:user_id', async (req, res) => {
+    try {
+        let user_id = req.params.user_id
+        let username = req.body.username
+        let about = req.body.about
+        let avatar_url = req.body.avatar_url
+        await pool.query(`
+            UPDATE users
+            SET username = $1, about = $2, avatar_url = $3
+            WHERE user_id = $4
+            `, [username, about, avatar_url, user_id]
+        )
+        res.json(`Updated`)
     } catch (error) {
         console.log(error.message)
         res.send(error.message)
@@ -142,7 +163,7 @@ app.get('/videos', async (req, res) => {
     }
 })
 
-//get one video
+//get one video by id
 app.get('/videos/:video_id', async (req, res) => {
     try {
         let video_id = req.params.video_id
@@ -195,6 +216,28 @@ app.get('/video-array/:length', async (req, res) => {
     }
 })
 
+//patch///////////////////////////
+
+//patch one video by video id
+app.patch('/videos/:video_id', async (req, res) => {
+    try {
+        let video_id = req.params.video_id
+        let title =  req.body.title
+        let thumbnail_url = req.body.thumbnail_url
+        let description = req.body.description
+        await pool.query(`
+            UPDATE videos
+            SET title = $1, thumbnail_url = $2, description = $3
+            WHERE video_id = $4
+            `, [title, thumbnail_url, description, video_id]
+        )
+        res.json('Video Updated')
+    } catch (error) {
+        console.log(error.message)
+        res.send(error.messageq)
+    }
+})
+
 ////////////////////////////////////////////////////////////////////////// comments ///////////////////////////////////////////////////////////////////////////////
 
 //get/////////////////////////////
@@ -225,6 +268,26 @@ app.post('/comments/:user_id/:video_id', async (req, res) => {
             `, [user_id, video_id, comment_text]
         )
         res.send(`Comment Posted`)
+    } catch (error) {
+        console.log(error.message)
+        res.send(error.message)
+    }
+})
+
+//patch//////////////////////////////
+
+//patch one comment by comment id
+app.patch('/comments/:comment_id', async (req, res) => {
+    try {
+        let comment_id = req.params.comment_id
+        let comment_text = req.body.comment_text
+        await pool.query(`
+            UPDATE comments
+            SET comment_text = $1
+            WHERE comment_id = $2
+            `, [comment_text, comment_id]
+        )
+        res.json(`Edited`)
     } catch (error) {
         console.log(error.message)
         res.send(error.message)

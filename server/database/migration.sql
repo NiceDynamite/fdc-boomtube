@@ -25,7 +25,7 @@ CREATE TABLE videos(
     title VARCHAR(64),
     video_url VARCHAR(64),
     thumbnail_url VARCHAR(64),
-    descrition TEXT
+    description TEXT
 );
 
 CREATE TABLE comments (
