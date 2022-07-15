@@ -1,39 +1,42 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Routes, Route } from "react-router-dom"
 import LoginPage from "./Pages/LoginPage";
 import SignupPage from "./Pages/SignupPage";
 import HomePage from "./Pages/HomePage";
+import MyProfile from "./Pages/MyProfilePage";
+import Loading from "./Loading";
 import axios from "axios";
 import ReactPlayer from "react-player";
 
-const videoCount= 6;
-let loadedvideos={};
-// fetch(`http://localhost:5000/users`,{
-//              method: 'POST',
-//              headers: {
-//                  'Content-Type': 'application/json'
-//              },
-//                  body: JSON.stringify(userId)
-//              })
-//          .then((response) => response.json())
-//          .then((data) => {localStorage.setItem('userData', JSON.stringify(data)); console.log(data)})
-//          .then(() => console.log("Mounted user data"))
-//          .then(() => usableUserData=JSON.parse(localStorage.userData))
-//          .then(() => console.log(usableUserData.username));
-// }
+
+
 
 
 export default function App() {
     let [ userData, setUserData ] = React.useState({username: "No user"});
-    let [ videos, setVideos ] = React.useState(loadedvideos);
-    
+    let [ videosState, setVideosState ] = React.useState();
+    let [ loading, setLoading ] = React.useState(true);
+    const videoCount= 8;
+    let grabVideos = () => {
+    fetch(`http://localhost:5001/video-array/${videoCount}`)
+            .then((response) => response.json())
+            .then((data) => { setLoading(false); console.log(loading);setVideosState(data);})
+    }
+    useEffect(() => {
+        grabVideos()
+      },[]);
+
+    if(loading){
+        return (<Loading/>)
+    }
     return (
-        <>
-                <Routes>
-                    <Route path="/login" element={<LoginPage userData={userData} setUserData={setUserData}/>} />
-                    <Route path="/signup" element={<SignupPage userData={userData} setUserData={setUserData}/>} />
-                    <Route path="/home" element={<HomePage userData={userData} setUserData={setUserData}/>} />
-                </Routes>
+        <> 
+            <Routes>
+                <Route path="/login" element={<LoginPage userData={userData} setUserData={setUserData}/>} />
+                <Route path="/signup" element={<SignupPage userData={userData} setUserData={setUserData}/>} />
+                <Route path="/home" element={<HomePage videos={videosState} userData={userData} setUserData={setUserData}/>} />
+                <Route path="/myprofile" element={<MyProfile userData={userData} setUserData={setUserData}/>} /> 
+            </Routes>
         </>
     )
 }

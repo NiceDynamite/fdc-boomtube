@@ -5,17 +5,26 @@
     padding: 7px;
     padding-top: 3px;
     padding-bottom: 45px;
+    width: 100%;
 }
 .HeaderLogo {
     width: 85px;
     height: 85px;
 }
-
+.navbarContainer{
+  display: flex;
+  flex-direction: row;
+  flex: grow;
+  align-content: center;
+}
 .navbar {
     background-color: #ff6600;
     overflow: hidden;
     text-align: center;
     height: 50px;
+  }
+  .navbarLoggedin{
+    display: none;
   }
   
   /* Style the links inside the navigation bar */
@@ -49,5 +58,8 @@
     background-color: #595959;
     color: #ddd;
   }
-
+.HeaderAvatarContainer {
+  float: left;
+  text-align: justify;
+}
   

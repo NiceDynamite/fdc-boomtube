@@ -2,9 +2,9 @@ const Navbar = () => {
     return (
         <div className="navbar">
             <a className="active">Home</a>
-            <a>My Profile</a>
+            <a className="navbarLoggedin">My Profile</a>
             <a>Upload</a>
-            <a>Sign Out</a>
+            <a className="navbarLoggedin">Sign Out</a>
         </div>
     )
 }

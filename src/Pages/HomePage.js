@@ -33,19 +33,19 @@ const HomePage = (props) => {
         // }else{
         //     console.log("userData is same")
         // }
-     
+     console.log(props.videos[0].thumbnail_url)
     return(
         <div id="home-page">
-            <Header userData={props.userData}/>
+            <Header userData={props.userData} setUserData={props.setUserData}/>
             <div className="container">
-                <div>Video 1<img src={logo} alt="Video thumbnail" className="HomeLogo"></img></div>
-                <div>Video 2<img src={logo} alt="Video thumbnail" className="HomeLogo"></img>{console.log(`in home ${JSON.stringify(props.userData)}`)}</div>
-                <div>Video 3<img src={logo} alt="Video thumbnail" className="HomeLogo"></img></div>
-                <div>Video 4<img src={logo} alt="Video thumbnail" className="HomeLogo"></img></div>
-                <div>Video 5<img src={logo} alt="Video thumbnail" className="HomeLogo"></img></div>
-                <div>Video 6<img src={logo} alt="Video thumbnail" className="HomeLogo"></img></div>
-                <div>Video 7<img src={logo} alt="Video thumbnail" className="HomeLogo"></img></div>
-                <div>Video 8<img src={logo} alt="Video thumbnail" className="HomeLogo"></img></div>
+                <div>Video 1<img src={props.videos[0].thumbnail_url} alt="Video thumbnail" className="HomeLogo"></img></div>
+                <div>Video 2<img src={props.videos[0].thumbnail_url} alt="Video thumbnail" className="HomeLogo"></img>{console.log(`in home ${JSON.stringify(props.userData)}`)}</div>
+                <div>Video 3<img src={props.videos[0].thumbnail_url} alt="Video thumbnail" className="HomeLogo"></img></div>
+                <div>Video 4<img src={props.videos[0].thumbnail_url} alt="Video thumbnail" className="HomeLogo"></img></div>
+                <div>Video 5<img src={props.videos[0].thumbnail_url} alt="Video thumbnail" className="HomeLogo"></img></div>
+                <div>Video 6<img src={props.videos[0].thumbnail_url} alt="Video thumbnail" className="HomeLogo"></img></div>
+                <div>Video 7<img src={props.videos[0].thumbnail_url} alt="Video thumbnail" className="HomeLogo"></img></div>
+                <div>Video 8<img src={props.videos[0].thumbnail_url} alt="Video thumbnail" className="HomeLogo"></img></div>
             </div>
             <Footer />
         </div>

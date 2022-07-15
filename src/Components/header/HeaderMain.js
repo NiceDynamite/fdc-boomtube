@@ -11,8 +11,10 @@ const Header = (props) => {
     return (
         <header className="HeaderContainer">
             <img src={logo} alt="boomTubeLogo" className="HeaderLogo"></img>
-            <Navbar />
-            <Searchbar />
+            <div className="navbarContainer">
+                <Navbar userData={props.userData} setUserData={props.setUserData}/>
+                <Searchbar />
+            </div>
             <div className="HeaderAvatarContainer">
                 <img src={avatar} alt="boomTubeLogo" className="HeaderLogo"></img>
                 <div>{props.userData.username}</div>
