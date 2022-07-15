@@ -1,7 +1,7 @@
 
-import Footer from '../Components/Footer/Footer';
+import Footer from '../Components/footer/Footer';
 import Header from '../Components/header/HeaderMain';
-import './Homepage.css'
+import './HomePage.css'
 const userName = () => {
  localStorage.setItem('userName', 'bob');
 }
