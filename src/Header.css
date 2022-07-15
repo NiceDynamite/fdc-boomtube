@@ -39,6 +39,8 @@
     background-color: #ddd;
     color: #333;
   }
+
+  
 #input-form{
     display: flex;
     flex-direction: row;
