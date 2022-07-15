@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Modal from 'react-modal';
+import {Link} from 'react-router-dom';
 
 //tells the modal where to attach and render
 Modal.setAppElement('#root')
@@ -67,8 +68,9 @@ function UploadVideo() {
     }
 
     return (
-        <div className="uploadVideo">
-            <button onClick={openModal}>Upload Video</button>   
+        <>
+            {/* <button onClick={openModal}>Upload Video</button>    */}
+            <Link to="/" onClick={openModal} className="uploadBtn">Upload</Link>
                 <Modal contentLabel={"Upload new Avatar JPEG"} 
                 shouldFocusAfterRender={true}
                 shouldReturnFocusAfterClose={true}
@@ -82,7 +84,7 @@ function UploadVideo() {
                     <button type="submit">Submit</button>
                 </form>
             </Modal>
-        </div>
+        </>
     )  
 }
 
