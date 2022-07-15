@@ -65,7 +65,7 @@ export default function LoginForm() {
                         },
 
                     }).then((response) => {
-                        console.log(response)
+                        localStorage.setItem("userData", JSON.stringify(response.data))
                     })
 
                 setTimeout(() => {

@@ -1,4 +1,8 @@
+
 import {Link} from 'react-router-dom'
+
+import UploadVideo from '../fileupload/UploadVideo';
+
 
 const Navbar = () => {
 
@@ -24,6 +28,7 @@ const Navbar = () => {
 
     return (
         <div className="navbar">
+
             <Link to="/home" onClick={handleClick} className="homeBtn active">Home</Link>
             <Link to='/myprofile' onClick={handleClick} className="signupBtn">My Profile</Link>
             <Link to='/upload' onClick={handleClick} className="uploadBtn">Upload</Link>

@@ -58,6 +58,20 @@ export default function SignupForm() {
                     password: ''
                 })
 
+                axios.post('http://localhost:5001/users', {
+                    user_id: response.data.id
+                },
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'authorization': ` Bearer ${response.data.token}`
+                        },
+
+                    }).then((response) => {
+                        localStorage.setItem("userData", JSON.stringify(response.data))
+                        console.log(response)
+                    })
+
                 setTimeout(() => {
                     nav('/')
                 }, 2000)
