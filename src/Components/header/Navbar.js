@@ -28,10 +28,10 @@ const Navbar = () => {
 
     return (
         <div className="navbar">
-
-            <Link to="/home" onClick={handleClick} className="homeBtn active">Home</Link>
+            <Link to="/" onClick={handleClick} className="homeBtn active">Home</Link>
             <Link to='/myprofile' onClick={handleClick} className="signupBtn">My Profile</Link>
-            <Link to='/upload' onClick={handleClick} className="uploadBtn">Upload</Link>
+            <UploadVideo />
+            {/* <Link to='/upload' onClick={handleClick} className="uploadBtn">Upload</Link> */}
             <Link to="/login" onClick={handleClick} className="signOutBtn">Sign Out</Link>
         </div>
     )
