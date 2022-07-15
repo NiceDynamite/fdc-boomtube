@@ -8,16 +8,19 @@ import ReactPlayer from "react-player";
 
 const videoCount= 6;
 let loadedvideos={};
-// axios.post(`http://localhost:5001/videos/${videoCount}`, {
-//     user_id: response.data.id
-// },
-//     {
-//         headers: {
-//             'Content-Type': 'application/json',
-//             'authorization': ` Bearer ${response.data.token}`
-//         },
-
-//     }).then(nav('/home'))
+// fetch(`http://localhost:5000/users`,{
+//              method: 'POST',
+//              headers: {
+//                  'Content-Type': 'application/json'
+//              },
+//                  body: JSON.stringify(userId)
+//              })
+//          .then((response) => response.json())
+//          .then((data) => {localStorage.setItem('userData', JSON.stringify(data)); console.log(data)})
+//          .then(() => console.log("Mounted user data"))
+//          .then(() => usableUserData=JSON.parse(localStorage.userData))
+//          .then(() => console.log(usableUserData.username));
+// }
 
 
 export default function App() {
