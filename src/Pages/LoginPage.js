@@ -6,7 +6,7 @@ import Header from '../Components/header/HeaderAutho.js';
 
 import Paper from "@mui/material/Paper";
 
-export default function LoginPage() {
+export default function LoginPage(props) {
     return (
         <>
         <Header/>
@@ -26,7 +26,7 @@ export default function LoginPage() {
 
                     </div>
                     <div className="form-container">
-                        <LoginForm />
+                        <LoginForm userData={props.userData} setUserData={props.setUserData}/>
                     </div>
 
                 

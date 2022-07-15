@@ -73,7 +73,7 @@ export default function SignupForm() {
                     })
 
                 setTimeout(() => {
-                    nav('/')
+                    nav('/home')
                 }, 2000)
 
                 localStorage.setItem("token", `Bearer ${response.data.token}`)

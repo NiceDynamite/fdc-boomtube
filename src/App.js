@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Routes, Route } from "react-router-dom"
 import LoginPage from "./Pages/LoginPage";
 import SignupPage from "./Pages/SignupPage";
 import HomePage from "./Pages/HomePage";
+
 // const userId = {user_id: 1};
 // let usableUserData={};
 // componentDidMount() {
@@ -19,14 +20,17 @@ import HomePage from "./Pages/HomePage";
 //          .then(() => usableUserData=JSON.parse(localStorage.userData))
 //          .then(() => console.log(usableUserData.username));
 // }
+
 export default function App() {
+    let [ userData, setUserData ] = React.useState({username: "No user"});
+    
     return (
         <>
-            <Routes>
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/signup" element={<SignupPage />} />
-                <Route path="/home" element={<HomePage />} />
-            </Routes>
+                <Routes>
+                    <Route path="/login" element={<LoginPage userData={userData} setUserData={setUserData}/>} />
+                    <Route path="/signup" element={<SignupPage />} />
+                    <Route path="/home" element={<HomePage userData={userData} setUserData={setUserData}/>} />
+                </Routes>
         </>
     )
 }
