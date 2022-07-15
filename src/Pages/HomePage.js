@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import Footer from '../Components/footer/Footer';
 import Header from '../Components/header/HeaderMain';
-import './Homepage.css';
+import './HomePage.css';
+import logo from '../Components/header/boomtubelogo.png';
 
 // const userId = {user_id: 1};
 
@@ -26,19 +27,25 @@ import './Homepage.css';
 
 
 const HomePage = (props) => {
-   
+        // if(props.userData.username != localStorage.userData.username){
+        //     props.setUserData(localStorage.userData);
+        //     console.log("userData is not same")
+        // }else{
+        //     console.log("userData is same")
+        // }
+     
     return(
         <div id="home-page">
-            <Header />
+            <Header userData={props.userData}/>
             <div className="container">
-                <div>Video 1{props.userData.username}</div>
-                <div>Video 2{console.log(`in home ${JSON.stringify(props.userData)}`)}</div>
-                <div>Video 3</div>
-                <div>Video 4</div>
-                <div>Video 5</div>
-                <div>Video 6</div>
-                <div>Video 7</div>
-                <div>Video 8</div>
+                <div>Video 1<img src={logo} alt="Video thumbnail" className="HomeLogo"></img></div>
+                <div>Video 2<img src={logo} alt="Video thumbnail" className="HomeLogo"></img>{console.log(`in home ${JSON.stringify(props.userData)}`)}</div>
+                <div>Video 3<img src={logo} alt="Video thumbnail" className="HomeLogo"></img></div>
+                <div>Video 4<img src={logo} alt="Video thumbnail" className="HomeLogo"></img></div>
+                <div>Video 5<img src={logo} alt="Video thumbnail" className="HomeLogo"></img></div>
+                <div>Video 6<img src={logo} alt="Video thumbnail" className="HomeLogo"></img></div>
+                <div>Video 7<img src={logo} alt="Video thumbnail" className="HomeLogo"></img></div>
+                <div>Video 8<img src={logo} alt="Video thumbnail" className="HomeLogo"></img></div>
             </div>
             <Footer />
         </div>

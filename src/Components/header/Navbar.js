@@ -4,7 +4,7 @@ const Navbar = () => {
             <a className="active">Home</a>
             <a>My Profile</a>
             <a>Upload</a>
-            <a>Sign Out</a>
+            <a onClick={() => {localStorage.clear();}}>Sign Out</a>
         </div>
     )
 }

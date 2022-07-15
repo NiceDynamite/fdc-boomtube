@@ -6,7 +6,7 @@ import { Email, Key, ArrowForward, AccountCircle } from '@mui/icons-material'
 import { Link } from 'react-router-dom';
 
 
-export default function SignupForm() {
+export default function SignupForm(props) {
 
     const nav = useNavigate()
 
@@ -67,14 +67,14 @@ export default function SignupForm() {
                             'authorization': ` Bearer ${response.data.token}`
                         },
 
-                    }).then((response) => {
-                        localStorage.setItem("userData", JSON.stringify(response.data))
-                        console.log(response)
                     })
+                    .then(nav('/home'))
+                    .then((response) => {
+                        localStorage.setItem("userData", JSON.stringify(response.data));
+                        props.setUserData(response.data)
+                    })
+                    .then(setTimeout(2000))
 
-                setTimeout(() => {
-                    nav('/home')
-                }, 2000)
 
                 localStorage.setItem("token", `Bearer ${response.data.token}`)
 
