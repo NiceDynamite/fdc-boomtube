@@ -1,0 +1,60 @@
+/* Add a black background color to the top navigation */
+.navbar {
+    background-color: #E8571A;
+    overflow: hidden;
+    text-align: center;
+    height: 50px;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .navbar a {
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  /* Change the color of links on hover */
+  .navbar a:hover {
+    background-color: #ddd;
+    color: black;
+    cursor: pointer;
+  }
+  
+  /* Add a color to the active/current link */
+  .navbar a.active {
+    background-color: #ddd;
+    color: #333;
+  }
+
+  .header-container {
+    background-color: #E8571A;
+  }
+
+  #input-form {
+      text-align: center;
+  }
+
+  .input-field {
+      transition: width 0.5s ease-in-out;
+  }
+
+  .input-field:focus {
+      width: 50%;
+  }
+
+  .container {
+    padding-top: 10%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 5px;
+  }
+  .container div {
+    background-color: lightgray;
+    aspect-ratio: 1;
+  }
+
+  #home-page {
+      background-color: #ADB5B0;
+  }

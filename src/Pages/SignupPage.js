@@ -7,6 +7,7 @@ export default function SignupPage() {
         <>
         <Header/>
         <div className="signup">
+            
             <div className="signup-container">
                 <Paper
                     elevation={6}
