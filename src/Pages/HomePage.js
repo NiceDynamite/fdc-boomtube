@@ -1,5 +1,5 @@
 
-import Footer from '../Components/Footer/Footer';
+import Footer from '../Components/footer/Footer';
 import Header from '../Components/header/HeaderMain';
 import './Homepage.css'
 const userName = () => {
