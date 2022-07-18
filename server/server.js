@@ -63,7 +63,7 @@ app.get('/s3Url', async (req, res) => {
     res.send({url})
 })
 
-//will eventually change the avatar url for the user who uploads it
+//change the avatar url for the user who uploads it (under construction)
 app.post('/image-upload', async (req, res) => {
     //console.log(req.body.avatar_url)
     //add image_url, title, thumbnail_url, description, UserID(FK) to database
@@ -265,13 +265,11 @@ app.get('/video-array/:length', async (req, res) => {
     }
 })
 //post/////////////////////////////
-//currently just logs the request body data, but needs to put it into the database
+//Inserts all pertinent information into video table for a video that has just been uploaded to the bucket
+//Called by the UploadVideo component on the Navbar component, in the header component. 
+//future functionality may include a call to create a thumbnail of the video and storing it during this call to 
+//the database. 
 app.post('/video-upload', async (req, res) => {
-    //console.log(`req.body.user_id: ${req.body.user_id}`)
-    //console.log(`req.body.title: ${req.body.title}`)
-    //console.log(`req.body.video_url: ${req.body.video_url}`)
-    //console.log(`req.body.thumbnail_url: ${req.body.thumbnail_url}`)
-    //console.log(`req.body.description: ${req.body.description}`)
     try {
         let user_id = req.body.user_id        
         let title =  req.body.title
@@ -286,9 +284,7 @@ app.post('/video-upload', async (req, res) => {
     } catch (error) {
         console.log(error.message)
         res.send(error.messageq)
-    }
-    //add video_url, thumbnail, etc to database
-    //for testing purposes we will fill in most of these values with filler data at first
+    }        
 })
 
 //patch///////////////////////////
