@@ -47,7 +47,7 @@ function UploadVideo() {
             body: file
         })
         const imageUrl = url.split('?')[0] 
-        console.log(imageUrl) //clg the url that will be stored in database to access the video later
+        console.log(`database input, imageUrl: ${imageUrl}`) //clg the url that will be stored in database to access the video later
         //store the url in the Video table using the current logged in user id and other inputs like description etc./route isn't finished
         console.log(fileName)
         await fetch(`http://${SERVER}:${PORT}/video-upload`, {
