@@ -14,6 +14,7 @@ const HomePage = (props) => {
         setUrl("No Video");
     }
     console.log(props.videos[0])
+    console.log(props.userData);
     if(url == "No Video"){
         return(
             <div id="home-page">
