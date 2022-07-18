@@ -1,10 +1,10 @@
 
-
+ const timer = () => {setTimeout(Loading,250)}
 export default function Loading(props) {
-    setTimeout(Loading,250)
+   
     return (
         <>
-            <div>Login</div>
+            <div>Loading{timer()}</div>
         </>
     )
 }

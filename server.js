@@ -1,5 +1,5 @@
 //Requirements and Imports
-require('dotenv').config()
+require("dotenv").config();
 const express = require('express')
 const pool = require('./server/database/connection.js')
 const { Pool } = require('pg')
@@ -11,6 +11,7 @@ const jwt = require('jsonwebtoken')
 const { check, validationResult } = require('express-validator')
 const bycrpt = require('bcrypt')
 const jwtGenerator = require('./server/utils/jwtGenerator')
+
 
 //app setup
 app.use(cors())

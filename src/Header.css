@@ -18,33 +18,36 @@
   align-content: center;
 }
 .navbar {
-    background-color: #ff6600;
-    overflow: hidden;
-    text-align: center;
-    height: 50px;
-  }
-  .navbarLoggedin{
-    display: none;
+  display: flex;
+  flex-direction: row;
+  background-color: #ff6600;
+  overflow: hidden;
+  text-align: center;
+  height: 50px;
   }
   
   /* Style the links inside the navigation bar */
-  .navbar a {
+  .navbarLogged {
     color: #f2f2f2;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
   }
+  .navbar div{
+    margin-left: 3px;
+    margin-right: 3px;
+  }
   
   /* Change the color of links on hover */
-  .navbar a:hover {
+  .navbar div:hover {
     background-color: #ddd;
     color: black;
     cursor: pointer;
   }
   
   /* Add a color to the active/current link */
-  .navbar a.active {
+  .navbar div.active {
     background-color: #ddd;
     color: #333;
   }
@@ -59,7 +62,7 @@
     color: #ddd;
   }
 .HeaderAvatarContainer {
-  float: left;
-  text-align: justify;
+  align-content: right;
+
 }
   

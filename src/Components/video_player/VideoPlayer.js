@@ -1,7 +1,10 @@
 import React from "react";
 import ReactPlayer from "react-player";
 
-export default function VideoPlayer() {
+export default function VideoPlayer(props) {
+    console.log("in Video Player");
+    console.log(props.video_url);
+
     return (
         /*
         To use the react-player
@@ -11,6 +14,6 @@ export default function VideoPlayer() {
         To have the video's controls on the player, you need to pass the 'controls' prop
         React-Player works with most popular video sharing urls. Just plug it in, as below
         */
-        <ReactPlayer className='video_player' controls url='https://ds956fhn2jvzk.cloudfront.net/ContextAPILecture.mp4' />
+        <ReactPlayer className='video_player' controls url={props.video_url} />
     )
 }

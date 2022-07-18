@@ -6,16 +6,21 @@ const Navbar = (props) => {
         props.setUserData("");
         props.setUserData({username: "No user"});
     }
-    // let signinToggle = () => {
-    //     props.userData.username == "No user" ? "sign in" : "sign out";
-    // }
+     
+    if(props.userData.username == "No user"){
+        return (
+        <div className="navbar">
+            <div onClick={() => {nav('/home'); props.setUrl("No Video")}}>Home</div>
+            <div >Upload</div>
+            <div onClick={() => {nav("/login")}}>Login</div>
+        </div>
+    )}
     return (
         <div className="navbar">
-            <a onClick={() => {nav('/home')}}>Home</a>
-            <a className="navbarLoggedin" onClick={() => {if(props.userData.username != "No user"){nav('/myprofile')}}}>My Profile</a>
-            <a>Upload</a>
-            <a className="navbarLoggedin" onClick={() => {signinSignout()}}>signout</a>
-            <a className="navbarSignedOut" onClick={() => {nav("/login")}}>Login</a>
+            <div onClick={() => {nav('/home'); props.setUrl("No Video")}}>Home</div>
+            <div onClick={() => {if(props.userData.username != "No user"){nav('/myprofile')}}}>My Profile</div>
+            <div >Upload</div>
+            <div onClick={() => {signinSignout()}}>Signout</div>
         </div>
     )
 }

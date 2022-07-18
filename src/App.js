@@ -5,8 +5,7 @@ import SignupPage from "./Pages/SignupPage";
 import HomePage from "./Pages/HomePage";
 import MyProfile from "./Pages/MyProfilePage";
 import Loading from "./Loading";
-import axios from "axios";
-import ReactPlayer from "react-player";
+
 
 
 
@@ -20,7 +19,7 @@ export default function App() {
     let grabVideos = () => {
     fetch(`http://localhost:5001/video-array/${videoCount}`)
             .then((response) => response.json())
-            .then((data) => { setLoading(false); console.log(loading);setVideosState(data);})
+            .then((data) => { setLoading(false); setVideosState(data);})
     }
     useEffect(() => {
         grabVideos()
@@ -28,6 +27,9 @@ export default function App() {
 
     if(loading){
         return (<Loading/>)
+    }
+    if(userData.username == "No user"){
+
     }
     return (
         <> 

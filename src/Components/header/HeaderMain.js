@@ -12,7 +12,7 @@ const Header = (props) => {
         <header className="HeaderContainer">
             <img src={logo} alt="boomTubeLogo" className="HeaderLogo"></img>
             <div className="navbarContainer">
-                <Navbar userData={props.userData} setUserData={props.setUserData}/>
+                <Navbar userData={props.userData} setUrl={props.setUrl} setUserData={props.setUserData}/>
                 <Searchbar />
             </div>
             <div className="HeaderAvatarContainer">

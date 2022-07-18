@@ -63,3 +63,7 @@
     height: 250px;
     width: 250px;
   }
+  .videoCloseButton {
+    background-color: #ff6600;
+    width: 80px;
+  }
