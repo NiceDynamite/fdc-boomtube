@@ -35,7 +35,7 @@ app.use(express.static('public'))
 
 async function generateUploadURL() {
     const rawBytes = await randomBytes(16)
-    const imageName = rawBytes.toString('hex')  
+    const imageName = rawBytes.toString('hex')
     console.log(`imageName: ${imageName}`)
     console.log(`bucketName: ${bucketName}`)
     const params = ({
@@ -60,7 +60,7 @@ async function generateUploadURL() {
 //returns a url from the bucket that can be used for a location to upload the file
 app.get('/s3Url', async (req, res) => {
     const url = await generateUploadURL()
-    res.send({url})
+    res.send({ url })
 })
 
 //change the avatar url for the user who uploads it (under construction)
@@ -189,8 +189,8 @@ app.delete('/users/:user_id', async (req, res) => {
         DELETE FROM users
         WHERE user_id = $1
         `, [user_id]
-    )
-    res.json(`Deleted`)
+        )
+        res.json(`Deleted`)
     } catch (error) {
         console.log(error.message)
         res.send(error.message)
@@ -271,8 +271,8 @@ app.get('/video-array/:length', async (req, res) => {
 //the database. 
 app.post('/video-upload', async (req, res) => {
     try {
-        let user_id = req.body.user_id        
-        let title =  req.body.title
+        let user_id = req.body.user_id
+        let title = req.body.title
         let video_url = req.body.video_url
         let thumbnail_url = req.body.thumbnail_url
         let description = req.body.description
@@ -284,7 +284,7 @@ app.post('/video-upload', async (req, res) => {
     } catch (error) {
         console.log(error.message)
         res.send(error.messageq)
-    }        
+    }
 })
 
 //patch///////////////////////////
@@ -293,7 +293,7 @@ app.post('/video-upload', async (req, res) => {
 app.patch('/videos/:video_id', async (req, res) => {
     try {
         let video_id = req.params.video_id
-        let title =  req.body.title
+        let title = req.body.title
         let thumbnail_url = req.body.thumbnail_url
         let description = req.body.description
         await pool.query(`
@@ -583,21 +583,17 @@ app.post('/register', [
                 status: 400
             })
         }
-
         const { username, email, password } = req.body
-
-        const user = await pool.query('SELECT * FROM users WHERE email = $1;', [email])
-
-        if (user.rows.length !== 0) {
+        const emailCheck = await pool.query('SELECT * FROM users WHERE email = $1;', [email])
+        const usernameCheck = await pool.query('SELECT * FROM users WHERE username = $1;', [username])
+        if (emailCheck.rows.length !== 0) {
             return res.status(401).send({ msg: 'email is already in use' })
+        } else if (usernameCheck.rows.length !== 0) {
+            return res.status(401).send({ msg: 'username is taken' })
         }
-
         const bycrptPassword = await bycrpt.hash(password, 10)
-
         const newUser = await pool.query('INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *;', [username, email, bycrptPassword])
-
         const token = jwtGenerator(newUser.rows[0].user_id)
-
         res.json({ msg: 'Account Created Successfully', id: newUser.rows[0].user_id, token })
     } catch (err) {
         console.error(err.message)
@@ -608,23 +604,16 @@ app.post('/register', [
 app.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body
-
         const user = await pool.query('SELECT * FROM users WHERE username = $1', [username])
-
         if (user.rows.length < 1) {
             return res.status(404).send({ msg: 'User Not Found' })
         }
-
         const validPassword = await bycrpt.compare(password, user.rows[0].password)
-
         if (!validPassword) {
             return res.status(401).send({ msg: 'Password is invalid' })
         }
-
         const token = jwtGenerator(user.rows[0].user_id)
-
         res.json({ msg: 'login Successful', id: user.rows[0].user_id, token })
-
     } catch (err) {
         console.error(err.message)
         res.status(500).send({ msg: 'Server is having troubles' })
@@ -637,12 +626,10 @@ function authenticateToken(req, res, next) {
     if (token == null) {
         return res.sendStatus(401)
     }
-
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) {
             return res.sendStatus(403)
         }
-
         next()
     })
 }

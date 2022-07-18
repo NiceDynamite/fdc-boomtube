@@ -69,7 +69,6 @@ export default function SignupForm() {
 
                     }).then((response) => {
                         localStorage.setItem("userData", JSON.stringify(response.data))
-                        console.log(response)
                     })
 
                 setTimeout(() => {
