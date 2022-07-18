@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from 'react-modal';
 import {Link} from 'react-router-dom';
+import './fileupload.css'
 
 //tells the modal where to attach and render
 Modal.setAppElement('#root')
@@ -83,6 +84,8 @@ function UploadVideo() {
             {/* <button onClick={openModal}>Upload Video</button>    */}
             <Link to="/" onClick={openModal} className="uploadBtn">Upload</Link>
                 <Modal contentLabel={"Upload new Avatar JPEG"} 
+                className="videoModal"
+                overlayClassName="videoOverlay"
                 shouldFocusAfterRender={true}
                 shouldReturnFocusAfterClose={true}
                 parentSelector={() => document.body}
@@ -91,7 +94,7 @@ function UploadVideo() {
                 <form onSubmit={submit}>
                     <input onChange={fileSelected} type="file" accept="video/mp4" id="file"></input> 
                     <p>File Name: <input type="text" id="fileNameText" onChange={handleFileNameChange} value={fileName}></input></p>
-                    <p>Description: <input type="text" id="descriptionText" onChange={handleFileDescriptionChange} value={fileDescription}></input></p>            
+                    <p>Description: <textarea id="descriptionText" onChange={handleFileDescriptionChange} value={fileDescription}></textarea></p>            
                     <button type="submit">Submit</button>
                 </form>
             </Modal>
