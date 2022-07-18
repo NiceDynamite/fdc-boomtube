@@ -13,7 +13,7 @@ CREATE TABLE users(
     user_id SERIAL PRIMARY KEY,
     username VARCHAR(25),
     password VARCHAR(255),
-    avatar_url VARCHAR(64),
+    avatar_url TEXT,
     about TEXT,
     email VARCHAR(25),
     darkmode BOOLEAN DEFAULT false
@@ -23,8 +23,8 @@ CREATE TABLE videos(
     video_id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users ON DELETE CASCADE,
     title VARCHAR(64),
-    video_url VARCHAR(64),
-    thumbnail_url VARCHAR(64),
+    video_url TEXT,
+    thumbnail_url TEXT,
     description TEXT
 );
 
