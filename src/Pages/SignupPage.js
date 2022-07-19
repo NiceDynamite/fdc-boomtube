@@ -2,7 +2,7 @@ import SignupForm from "../Components/SignupForm"
 import { Paper } from '@mui/material'
 import Header from "../Components/header/HeaderAutho"
 
-export default function SignupPage() {
+export default function SignupPage(props) {
     return (
         <>
         <Header/>
@@ -22,7 +22,7 @@ export default function SignupPage() {
                         <p className="welcome-message">Signup below to register</p>
                     </div>
                     <div className="form-container">
-                        <SignupForm />
+                        <SignupForm userData={props.userData} setUserData={props.setUserData}/>
                     </div>
                 </Paper>
             </div>

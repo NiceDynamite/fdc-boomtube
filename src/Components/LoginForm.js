@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState  } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { TextField, Button, Box, InputAdornment, createTheme, ThemeProvider, Alert } from "@mui/material";
 import { Key, Login, AccountCircle } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
+
+
 
 
 const theme = createTheme({
@@ -14,8 +16,9 @@ const theme = createTheme({
     }
 })
 
-export default function LoginForm() {
 
+export default function LoginForm(props) {
+    
     const nav = useNavigate()
 
     const [user, setUser] = useState({
@@ -64,13 +67,13 @@ export default function LoginForm() {
                             'authorization': ` Bearer ${response.data.token}`
                         },
 
-                    }).then((response) => {
-                        localStorage.setItem("userData", JSON.stringify(response.data))
-                    })
-
-                setTimeout(() => {
-                    nav('/')
-                }, 2000)
+                    }).then(nav('/home'))
+                    .then((response) => {
+                        localStorage.setItem("userData", JSON.stringify(response.data));
+                        props.setUserData(response.data)
+                    }).then(setTimeout(2000))
+                    
+        
 
                 localStorage.setItem("token", `Bearer ${response.data.token}`)
             }

@@ -17,5 +17,3 @@ for(let i = 1; i <= 500; i++) {
         }
     })
 }
-
-let pointless = 'some text to make this file different'

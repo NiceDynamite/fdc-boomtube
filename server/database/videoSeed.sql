@@ -203,7 +203,3 @@ VALUES
 );
 
 \i commentSeed.sql
-
-
-
-
