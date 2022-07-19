@@ -53,4 +53,3 @@ CREATE TABLE favorites(
     video_id INTEGER REFERENCES videos ON DELETE CASCADE
 );
 
-\i userSeed.sql
