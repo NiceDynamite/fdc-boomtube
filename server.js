@@ -157,6 +157,7 @@ app.post('/users', authenticateToken, async (req, res) => {
     }
 })
 
+<<<<<<< HEAD:server.js
 //patch////////////////////////////
 
 //patch one user by user id
@@ -179,6 +180,8 @@ app.patch('/users/:user_id', async (req, res) => {
     }
 })
 
+=======
+>>>>>>> adds delete routes:server/server.js
 //delete///////////////////////////
 
 //deletes one user by user id
@@ -189,8 +192,13 @@ app.delete('/users/:user_id', async (req, res) => {
         DELETE FROM users
         WHERE user_id = $1
         `, [user_id]
+<<<<<<< HEAD:server.js
         )
         res.json(`Deleted`)
+=======
+    )
+    res.json(`Deleted`)
+>>>>>>> adds delete routes:server/server.js
     } catch (error) {
         console.log(error.message)
         res.send(error.message)
@@ -345,6 +353,7 @@ app.post('/comments/:user_id/:video_id', async (req, res) => {
     }
 })
 
+<<<<<<< HEAD:server.js
 //patch//////////////////////////////
 
 //patch one comment by comment id
@@ -365,6 +374,8 @@ app.patch('/comments/:comment_id', async (req, res) => {
     }
 })
 
+=======
+>>>>>>> adds delete routes:server/server.js
 //delete////////////////////////////
 
 //deletes one from comment by comment id
