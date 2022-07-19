@@ -1,10 +1,6 @@
 import LoginForm from "../Components/LoginForm";
 import './LoginPage.css'
 import Header from '../Components/header/HeaderAutho.js';
-
-
-
-
 import Paper from "@mui/material/Paper";
 
 export default function LoginPage(props) {
@@ -29,9 +25,6 @@ export default function LoginPage(props) {
                     <div className="form-container">
                         <LoginForm userData={props.userData} setUserData={props.setUserData}/>
                     </div>
-
-                
-
                 </Paper>
             </div>
             </div>

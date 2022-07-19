@@ -1,0 +1,21 @@
+.videoAndSuggestionContainer {
+    display: flex;
+    flex-direction: row;
+}
+.suggestionContainer{
+    display: flex;
+    flex-direction: column;
+    height: 360px;
+}
+.suggestionBox{
+    height: 100px;
+    background-color: blueviolet;
+}
+.suggestionBox img{
+    height: inherit;
+}
+.SuggestionCommentContainer {
+    margin: 12px;
+    border: solid 2px;
+    padding: 12px;
+}

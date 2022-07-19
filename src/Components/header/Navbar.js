@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import UploadVideo from '../fileupload/UploadVideo';
+import UploadAvatar from "../fileupload/UploadAvatar";
 const Navbar = (props) => {
     const nav = useNavigate();
     const signinSignout = () => {
@@ -11,15 +13,15 @@ const Navbar = (props) => {
         return (
         <div className="navbar">
             <div onClick={() => {nav('/home'); props.setUrl("No Video")}}>Home</div>
-            <div >Upload</div>
             <div onClick={() => {nav("/login")}}>Login</div>
         </div>
     )}
     return (
         <div className="navbar">
-            <div onClick={() => {nav('/home'); props.setUrl("No Video")}}>Home</div>
+            <div onClick={() => {nav('/home')}}>Home</div>
             <div onClick={() => {if(props.userData.username != "No user"){nav('/myprofile')}}}>My Profile</div>
-            <div >Upload</div>
+            <UploadAvatar userData={props.userData} setUserData={props.setUserData}/>
+            <UploadVideo />         
             <div onClick={() => {signinSignout()}}>Signout</div>
         </div>
     )

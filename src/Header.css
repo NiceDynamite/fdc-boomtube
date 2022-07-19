@@ -37,6 +37,11 @@
   .navbar div{
     margin-left: 3px;
     margin-right: 3px;
+    padding: 4px;
+    padding-top: 2px;
+    height:16px;
+    border: solid 1px;
+    border-color: #59595948;
   }
   
   /* Change the color of links on hover */

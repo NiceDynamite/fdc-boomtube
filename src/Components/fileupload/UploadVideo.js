@@ -70,7 +70,7 @@ function UploadVideo() {
     return (
         <>
             {/* <button onClick={openModal}>Upload Video</button>    */}
-            <Link to="/" onClick={openModal} className="uploadBtn">Upload</Link>
+            <div to="/" onClick={openModal} className="uploadBtn">Upload</div>
                 <Modal contentLabel={"Upload new Avatar JPEG"} 
                 shouldFocusAfterRender={true}
                 shouldReturnFocusAfterClose={true}

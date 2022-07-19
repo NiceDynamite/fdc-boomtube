@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 const MyProfile = (props) => {
     const nav = useNavigate();
+    console.log(`in profile ${props.userData.favorites}`)
     if(props.userData.username == "No user"){
     return (
         <>
@@ -22,10 +23,10 @@ const MyProfile = (props) => {
             <Header userData={props.userData} setUserData={props.setUserData}/>
             <h1>Wayne Odell</h1>
             <img src="https://unsplash.it/300/200" alt="cant load" className="profile-Picture"/>
-            <AboutMe />
-            <Favorites />
-            <UserVideos />
-            <ViewHistory />
+            <AboutMe userData={props.userData}/>
+            <Favorites userData={props.userData}/>
+            <UserVideos userData={props.userData}/>
+            <ViewHistory userData={props.userData}/>
             <Footer />
         </div>
         
