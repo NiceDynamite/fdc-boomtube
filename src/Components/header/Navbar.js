@@ -6,12 +6,11 @@ const Navbar = (props) => {
         props.setUserData("");
         props.setUserData({username: "No user"});
     }
-     
+     console.log(`checking before the if statment ${props.userData.username}`)
     if(props.userData.username == "No user"){
         return (
         <div className="navbar">
             <div onClick={() => {nav('/home'); props.setUrl("No Video")}}>Home</div>
-            <div >Upload</div>
             <div onClick={() => {nav("/login")}}>Login</div>
         </div>
     )}

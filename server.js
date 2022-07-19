@@ -1,5 +1,5 @@
 //Requirements and Imports
-require("dotenv").config();
+require('dotenv').config()
 const express = require('express')
 const pool = require('./server/database/connection.js')
 const { Pool } = require('pg')
@@ -10,7 +10,7 @@ const DATABASE_URL = process.env.DATABASE_URL
 const jwt = require('jsonwebtoken')
 const { check, validationResult } = require('express-validator')
 const bycrpt = require('bcrypt')
-const jwtGenerator = require('./utils/jwtGenerator')
+const jwtGenerator = require('./server/utils/jwtGenerator')
 const aws = require('aws-sdk')
 const crypto = require('crypto')
 const { promisify } = require('util')
@@ -35,7 +35,7 @@ app.use(express.static('public'))
 
 async function generateUploadURL() {
     const rawBytes = await randomBytes(16)
-    const imageName = rawBytes.toString('hex')  
+    const imageName = rawBytes.toString('hex')
     console.log(`imageName: ${imageName}`)
     console.log(`bucketName: ${bucketName}`)
     const params = ({
@@ -60,10 +60,10 @@ async function generateUploadURL() {
 //returns a url from the bucket that can be used for a location to upload the file
 app.get('/s3Url', async (req, res) => {
     const url = await generateUploadURL()
-    res.send({url})
+    res.send({ url })
 })
 
-//will eventually change the avatar url for the user who uploads it
+//change the avatar url for the user who uploads it (under construction)
 app.post('/image-upload', async (req, res) => {
     //console.log(req.body.avatar_url)
     //add image_url, title, thumbnail_url, description, UserID(FK) to database
@@ -157,13 +157,6 @@ app.post('/users', authenticateToken, async (req, res) => {
     }
 })
 
-<<<<<<< HEAD:server.js
-<<<<<<< HEAD:server.js
-<<<<<<< HEAD:server.js
-=======
->>>>>>> all routes "up"; password collum of users refactored to handle encripted pass:server/server.js
-=======
->>>>>>> main:server/server.js
 //patch////////////////////////////
 
 //patch one user by user id
@@ -186,14 +179,6 @@ app.patch('/users/:user_id', async (req, res) => {
     }
 })
 
-<<<<<<< HEAD:server.js
-<<<<<<< HEAD:server.js
-=======
->>>>>>> adds delete routes:server/server.js
-=======
->>>>>>> all routes "up"; password collum of users refactored to handle encripted pass:server/server.js
-=======
->>>>>>> main:server/server.js
 //delete///////////////////////////
 
 //deletes one user by user id
@@ -204,13 +189,8 @@ app.delete('/users/:user_id', async (req, res) => {
         DELETE FROM users
         WHERE user_id = $1
         `, [user_id]
-<<<<<<< HEAD:server.js
-    )
-    res.json(`Deleted`)
-=======
         )
         res.json(`Deleted`)
->>>>>>> main:server/server.js
     } catch (error) {
         console.log(error.message)
         res.send(error.message)
@@ -285,18 +265,6 @@ app.get('/video-array/:length', async (req, res) => {
     }
 })
 //post/////////////////////////////
-<<<<<<< HEAD:server.js
-//currently just logs the request body data, but needs to put it into the database
-app.post('/video-upload', async (req, res) => {
-    //console.log(`req.body.user_id: ${req.body.user_id}`)
-    //console.log(`req.body.title: ${req.body.title}`)
-    //console.log(`req.body.video_url: ${req.body.video_url}`)
-    //console.log(`req.body.thumbnail_url: ${req.body.thumbnail_url}`)
-    //console.log(`req.body.description: ${req.body.description}`)
-    try {
-        let user_id = req.body.user_id        
-        let title =  req.body.title
-=======
 //Inserts all pertinent information into video table for a video that has just been uploaded to the bucket
 //Called by the UploadVideo component on the Navbar component, in the header component. 
 //future functionality may include a call to create a thumbnail of the video and storing it during this call to 
@@ -305,7 +273,6 @@ app.post('/video-upload', async (req, res) => {
     try {
         let user_id = req.body.user_id
         let title = req.body.title
->>>>>>> main:server/server.js
         let video_url = req.body.video_url
         let thumbnail_url = req.body.thumbnail_url
         let description = req.body.description
@@ -318,11 +285,6 @@ app.post('/video-upload', async (req, res) => {
         console.log(error.message)
         res.send(error.messageq)
     }
-<<<<<<< HEAD:server.js
-    //add video_url, thumbnail, etc to database
-    //for testing purposes we will fill in most of these values with filler data at first
-=======
->>>>>>> main:server/server.js
 })
 
 //patch///////////////////////////
@@ -331,11 +293,7 @@ app.post('/video-upload', async (req, res) => {
 app.patch('/videos/:video_id', async (req, res) => {
     try {
         let video_id = req.params.video_id
-<<<<<<< HEAD:server.js
-        let title =  req.body.title
-=======
         let title = req.body.title
->>>>>>> main:server/server.js
         let thumbnail_url = req.body.thumbnail_url
         let description = req.body.description
         await pool.query(`
@@ -387,13 +345,6 @@ app.post('/comments/:user_id/:video_id', async (req, res) => {
     }
 })
 
-<<<<<<< HEAD:server.js
-<<<<<<< HEAD:server.js
-<<<<<<< HEAD:server.js
-=======
->>>>>>> all routes "up"; password collum of users refactored to handle encripted pass:server/server.js
-=======
->>>>>>> main:server/server.js
 //patch//////////////////////////////
 
 //patch one comment by comment id
@@ -414,14 +365,6 @@ app.patch('/comments/:comment_id', async (req, res) => {
     }
 })
 
-<<<<<<< HEAD:server.js
-<<<<<<< HEAD:server.js
-=======
->>>>>>> adds delete routes:server/server.js
-=======
->>>>>>> all routes "up"; password collum of users refactored to handle encripted pass:server/server.js
-=======
->>>>>>> main:server/server.js
 //delete////////////////////////////
 
 //deletes one from comment by comment id
@@ -690,4 +633,3 @@ function authenticateToken(req, res, next) {
         next()
     })
 }
-

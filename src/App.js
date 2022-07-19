@@ -8,14 +8,6 @@ import Loading from "./Loading";
 
 
 
-
-
-
-import MyProfile from "./Pages/MyProfilePage";
-
-import ReactPlayer from "react-player";
-
-
 export default function App() {
     let [ userData, setUserData ] = React.useState({username: "No user"});
     let [ videosState, setVideosState ] = React.useState();
