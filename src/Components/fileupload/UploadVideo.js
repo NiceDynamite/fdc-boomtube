@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Modal from 'react-modal';
 import {Link} from 'react-router-dom';
-import './fileupload.css'
+import '../../Css/fileupload.css'
 
 //tells the modal where to attach and render
 Modal.setAppElement('#root')
@@ -38,7 +38,7 @@ function UploadVideo() {
         closeModal()
         // get secure url from our S3 Bucket
         const { url } = await fetch(`http://${SERVER}:${PORT}/s3Url`).then(res => res.json())
-        console.log(url)
+        //console.log(url)
         // post the image direclty to the S3 bucket
         await fetch(url, {
             method: "PUT",
@@ -92,10 +92,10 @@ function UploadVideo() {
                 isOpen={modalIsOpen}            
                 onRequestClose={closeModal}>  
                 <form onSubmit={submit}>
-                    <input onChange={fileSelected} type="file" accept="video/mp4" id="file"></input> 
+                    <input onChange={fileSelected} type="file" accept="video/mp4" id="file" className="chooseBtn"></input> 
                     <p>File Name: <input type="text" id="fileNameText" onChange={handleFileNameChange} value={fileName}></input></p>
                     <p>Description: <textarea id="descriptionText" onChange={handleFileDescriptionChange} value={fileDescription}></textarea></p>            
-                    <button type="submit">Submit</button>
+                    <button type="submit" className="submitBtn">Submit</button>
                 </form>
             </Modal>
         </>

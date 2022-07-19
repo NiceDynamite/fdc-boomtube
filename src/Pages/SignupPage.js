@@ -1,6 +1,7 @@
 import SignupForm from "../Components/SignupForm"
 import { Paper } from '@mui/material'
 import Header from "../Components/header/HeaderAutho"
+import '../Css/LoginPage.css'
 
 export default function SignupPage() {
     return (

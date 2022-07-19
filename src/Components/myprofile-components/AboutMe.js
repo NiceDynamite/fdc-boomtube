@@ -1,4 +1,4 @@
-import '../../Pages/MyProfile.css'
+import '../../Css/MyProfile.css'
 
 const AboutMe = () => {
     return (

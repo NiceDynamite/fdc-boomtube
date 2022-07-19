@@ -1,0 +1,26 @@
+footer {
+    position:absolute;
+    align-items: stretch;
+    width: 100vw;
+    bottom: 0;
+    font-family: 'Bebas Neue', cursive;
+    background-color: #ADB5B0;
+}
+
+#createdBy {
+    text-align: center;
+}
+
+#profiles {
+    display: flex;    
+    justify-content: center;
+    font-family: 'Bebas Neue', cursive;
+    
+}
+
+#profile-div {    
+    padding-right: 15px;
+    padding-left: 15px;
+    text-align: center;
+    width: 20vw;
+}

@@ -16,6 +16,11 @@ const crypto = require('crypto')
 const { promisify } = require('util')
 const randomBytes = promisify(crypto.randomBytes)
 
+// for future functionality should give us the ability to generate a jpeg
+// const ffmpeg = require('fluent-ffmpeg');
+// const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
+// const ffprobePath = require('@ffprobe-installer/ffprobe').path;
+
 //bucket params setting
 const region = process.env.BUCKET_REGION
 const bucketName = 's3-tutorial-temporary'
@@ -44,10 +49,15 @@ async function generateUploadURL() {
         Expires: 60
     })
 
-    const uploadURL = await s3.getSignedUrlPromise('putObject', params)
-    console.log(uploadURL)
+const uploadURL = await s3.getSignedUrlPromise('putObject', params)
+    //console.log(uploadURL)
     return uploadURL
 }
+
+//for future functionality
+// ffmpeg.setFfmpegPath(ffmpegPath);
+// ffmpeg.setFfprobePath(ffprobePath);
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////       ROUTES       ///////////////////////////////////////////////////////////////////////////
@@ -270,7 +280,23 @@ app.get('/video-array/:length', async (req, res) => {
 //future functionality may include a call to create a thumbnail of the video and storing it during this call to 
 //the database. 
 app.post('/video-upload', async (req, res) => {
-    try {
+    try {//for future functionality\/\/\/\/
+//     const url = await generateUploadURL()
+//     //EXTRACT VIDEO DETAILS USING ffprobe (I am using multer)
+//     ffmpeg.ffprobe(req.body.video_url, (err, data)=>{
+//     // take out height and width and decrease it (depending on your requirement)
+//     ffmpeg(req.body.video_url)
+//     .screenshots({
+//     timestamps: ["00:01"],
+//     filename: `${url}`,
+//     folder: "./thumbs",
+//     count: 1,
+//     size: `${width}x${height}`,//getting this from ffprobe
+//     }).on("end", ()=> {
+//          //upload file in 'to/wherever/you/want'(thumbnail) to s3
+//          //upload the video as well to s3
+//     })
+// })//end future functionaility /\/\/\/\
         let user_id = req.body.user_id        
         let title =  req.body.title
         let video_url = req.body.video_url

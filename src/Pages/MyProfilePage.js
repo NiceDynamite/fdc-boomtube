@@ -4,7 +4,7 @@ import AboutMe from "../Components/myprofile-components/AboutMe";
 import Favorites from "../Components/myprofile-components/Favorites";
 import UserVideos from "../Components/myprofile-components/UserVideos";
 import ViewHistory from "../Components/myprofile-components/ViewHistory";
-import './MyProfile.css'
+import '../Css/MyProfile.css'
 
 
 

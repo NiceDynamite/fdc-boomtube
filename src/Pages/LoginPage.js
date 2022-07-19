@@ -1,9 +1,6 @@
 import LoginForm from "../Components/LoginForm";
-import './LoginPage.css'
+import '../Css/LoginPage.css'
 import Header from '../Components/header/HeaderAutho.js';
-
-
-
 import Paper from "@mui/material/Paper";
 
 export default function LoginPage() {
