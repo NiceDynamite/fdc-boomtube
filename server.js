@@ -159,8 +159,11 @@ app.post('/users', authenticateToken, async (req, res) => {
 
 <<<<<<< HEAD:server.js
 <<<<<<< HEAD:server.js
+<<<<<<< HEAD:server.js
 =======
 >>>>>>> all routes "up"; password collum of users refactored to handle encripted pass:server/server.js
+=======
+>>>>>>> main:server/server.js
 //patch////////////////////////////
 
 //patch one user by user id
@@ -184,10 +187,13 @@ app.patch('/users/:user_id', async (req, res) => {
 })
 
 <<<<<<< HEAD:server.js
+<<<<<<< HEAD:server.js
 =======
 >>>>>>> adds delete routes:server/server.js
 =======
 >>>>>>> all routes "up"; password collum of users refactored to handle encripted pass:server/server.js
+=======
+>>>>>>> main:server/server.js
 //delete///////////////////////////
 
 //deletes one user by user id
@@ -198,8 +204,13 @@ app.delete('/users/:user_id', async (req, res) => {
         DELETE FROM users
         WHERE user_id = $1
         `, [user_id]
+<<<<<<< HEAD:server.js
     )
     res.json(`Deleted`)
+=======
+        )
+        res.json(`Deleted`)
+>>>>>>> main:server/server.js
     } catch (error) {
         console.log(error.message)
         res.send(error.message)
@@ -274,6 +285,7 @@ app.get('/video-array/:length', async (req, res) => {
     }
 })
 //post/////////////////////////////
+<<<<<<< HEAD:server.js
 //currently just logs the request body data, but needs to put it into the database
 app.post('/video-upload', async (req, res) => {
     //console.log(`req.body.user_id: ${req.body.user_id}`)
@@ -284,6 +296,16 @@ app.post('/video-upload', async (req, res) => {
     try {
         let user_id = req.body.user_id        
         let title =  req.body.title
+=======
+//Inserts all pertinent information into video table for a video that has just been uploaded to the bucket
+//Called by the UploadVideo component on the Navbar component, in the header component. 
+//future functionality may include a call to create a thumbnail of the video and storing it during this call to 
+//the database. 
+app.post('/video-upload', async (req, res) => {
+    try {
+        let user_id = req.body.user_id
+        let title = req.body.title
+>>>>>>> main:server/server.js
         let video_url = req.body.video_url
         let thumbnail_url = req.body.thumbnail_url
         let description = req.body.description
@@ -296,8 +318,11 @@ app.post('/video-upload', async (req, res) => {
         console.log(error.message)
         res.send(error.messageq)
     }
+<<<<<<< HEAD:server.js
     //add video_url, thumbnail, etc to database
     //for testing purposes we will fill in most of these values with filler data at first
+=======
+>>>>>>> main:server/server.js
 })
 
 //patch///////////////////////////
@@ -306,7 +331,11 @@ app.post('/video-upload', async (req, res) => {
 app.patch('/videos/:video_id', async (req, res) => {
     try {
         let video_id = req.params.video_id
+<<<<<<< HEAD:server.js
         let title =  req.body.title
+=======
+        let title = req.body.title
+>>>>>>> main:server/server.js
         let thumbnail_url = req.body.thumbnail_url
         let description = req.body.description
         await pool.query(`
@@ -360,8 +389,11 @@ app.post('/comments/:user_id/:video_id', async (req, res) => {
 
 <<<<<<< HEAD:server.js
 <<<<<<< HEAD:server.js
+<<<<<<< HEAD:server.js
 =======
 >>>>>>> all routes "up"; password collum of users refactored to handle encripted pass:server/server.js
+=======
+>>>>>>> main:server/server.js
 //patch//////////////////////////////
 
 //patch one comment by comment id
@@ -383,10 +415,13 @@ app.patch('/comments/:comment_id', async (req, res) => {
 })
 
 <<<<<<< HEAD:server.js
+<<<<<<< HEAD:server.js
 =======
 >>>>>>> adds delete routes:server/server.js
 =======
 >>>>>>> all routes "up"; password collum of users refactored to handle encripted pass:server/server.js
+=======
+>>>>>>> main:server/server.js
 //delete////////////////////////////
 
 //deletes one from comment by comment id
@@ -605,21 +640,17 @@ app.post('/register', [
                 status: 400
             })
         }
-
         const { username, email, password } = req.body
-
-        const user = await pool.query('SELECT * FROM users WHERE email = $1;', [email])
-
-        if (user.rows.length !== 0) {
+        const emailCheck = await pool.query('SELECT * FROM users WHERE email = $1;', [email])
+        const usernameCheck = await pool.query('SELECT * FROM users WHERE username = $1;', [username])
+        if (emailCheck.rows.length !== 0) {
             return res.status(401).send({ msg: 'email is already in use' })
+        } else if (usernameCheck.rows.length !== 0) {
+            return res.status(401).send({ msg: 'username is taken' })
         }
-
         const bycrptPassword = await bycrpt.hash(password, 10)
-
         const newUser = await pool.query('INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *;', [username, email, bycrptPassword])
-
         const token = jwtGenerator(newUser.rows[0].user_id)
-
         res.json({ msg: 'Account Created Successfully', id: newUser.rows[0].user_id, token })
     } catch (err) {
         console.error(err.message)
@@ -630,23 +661,16 @@ app.post('/register', [
 app.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body
-
         const user = await pool.query('SELECT * FROM users WHERE username = $1', [username])
-
         if (user.rows.length < 1) {
             return res.status(404).send({ msg: 'User Not Found' })
         }
-
         const validPassword = await bycrpt.compare(password, user.rows[0].password)
-
         if (!validPassword) {
             return res.status(401).send({ msg: 'Password is invalid' })
         }
-
         const token = jwtGenerator(user.rows[0].user_id)
-
         res.json({ msg: 'login Successful', id: user.rows[0].user_id, token })
-
     } catch (err) {
         console.error(err.message)
         res.status(500).send({ msg: 'Server is having troubles' })
@@ -659,12 +683,10 @@ function authenticateToken(req, res, next) {
     if (token == null) {
         return res.sendStatus(401)
     }
-
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) {
             return res.sendStatus(403)
         }
-
         next()
     })
 }

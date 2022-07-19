@@ -67,6 +67,8 @@ export default function SignupForm(props) {
                             'authorization': ` Bearer ${response.data.token}`
                         },
 
+                    }).then((response) => {
+                        localStorage.setItem("userData", JSON.stringify(response.data))
                     })
                     .then(nav('/home'))
                     .then((response) => {

@@ -3,7 +3,7 @@ import SearchIcon from '@mui/icons-material/Search';
 const Searchbar = () => {
     return (
         <form id="input-form">
-            <input type="text" className="input"></input>
+            <input type="text" className="input" placeholder='Search for a video...'></input>
             <div id="submitBtn" type="button">
                 <SearchIcon sx={{fontSize:20}}/>
             </div>

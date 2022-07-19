@@ -52,4 +52,3 @@ CREATE TABLE favorites(
     user_id INTEGER REFERENCES users ON DELETE CASCADE,
     video_id INTEGER REFERENCES videos ON DELETE CASCADE
 );
-
