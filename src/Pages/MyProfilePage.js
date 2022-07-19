@@ -19,17 +19,23 @@ const MyProfile = (props) => {
         </>
     )}
     return(
-        <div>
+        <div>          
             <Header userData={props.userData} setUserData={props.setUserData}/>
-            <h1>Wayne Odell</h1>
-            <img src="https://unsplash.it/300/200" alt="cant load" className="profile-Picture"/>
-            <AboutMe userData={props.userData}/>
-            <Favorites userData={props.userData}/>
-            <UserVideos userData={props.userData}/>
-            <ViewHistory userData={props.userData}/>
-            <Footer />
+            <div className="profileContainerTop">
+                <div className="profileContainer2">
+                <h1 id="userNameMyProfile">{props.userData.username}</h1>
+                <img src={props.userData.avatar_url} alt="cant load" className="profile-Picture"/>
+                </div>
+                <div className="profileContainer2">
+                <AboutMe userData={props.userData}/>
+                </div>
+            </div>
+            <div className="profileContainerBottom">
+                <UserVideos userData={props.userData}/>
+                <ViewHistory userData={props.userData}/>
+            </div>
+            <Footer />           
         </div>
-        
     )
 }
 

@@ -21,7 +21,7 @@ const Navbar = (props) => {
             <div onClick={() => {nav('/home')}}>Home</div>
             <div onClick={() => {if(props.userData.username != "No user"){nav('/myprofile')}}}>My Profile</div>
             <UploadAvatar userData={props.userData} setUserData={props.setUserData}/>
-            <UploadVideo />         
+            <UploadVideo userData={props.userData}/>         
             <div onClick={() => {signinSignout()}}>Signout</div>
         </div>
     )

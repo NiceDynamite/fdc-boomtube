@@ -7,6 +7,7 @@ const AboutMe = (props) => {
             <p>{props.userData.about}</p>
         </span>
     )
+    
 }
 
 export default AboutMe

@@ -1,32 +1,32 @@
 /* Add a black background color to the top navigation */
-.navbar {
+/* .navbar {
     background-color: #E8571A;
     overflow: hidden;
     text-align: center;
     height: 50px;
-  }
+  } */
   
   /* Style the links inside the navigation bar */
-  .navbar a {
+  /* .navbar a {
     color: #f2f2f2;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-  }
+  } */
   
   /* Change the color of links on hover */
-  .navbar a:hover {
+  /* .navbar a:hover {
     background-color: #ddd;
     color: black;
     cursor: pointer;
-  }
+  } */
   
   /* Add a color to the active/current link */
-  .navbar a.active {
+  /* .navbar a.active {
     background-color: #ddd;
     color: #333;
-  }
+  } */
 
   .header-container {
     background-color: #E8571A;
@@ -44,11 +44,11 @@
       width: 50%;
   }
 
-  .container {
-    padding-top: 10%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 5px;
+  .homeVideoContainer {
+    margin: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
   .container div {
     background-color: lightgray;
@@ -56,14 +56,22 @@
   }
 
   #home-page {
+    height: 90vh;
       background-color: #ADB5B0;
   }
   
   .HomeLogo{
-    height: 250px;
-    width: 250px;
+    height: 150px;
+  
   }
   .videoCloseButton {
     background-color: #ff6600;
     width: 80px;
+  }
+  .vidBox{
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    width: 150px;
+    background-color: #ADB5B0;
   }

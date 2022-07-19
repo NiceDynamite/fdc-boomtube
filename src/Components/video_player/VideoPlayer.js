@@ -14,6 +14,6 @@ export default function VideoPlayer(props) {
         To have the video's controls on the player, you need to pass the 'controls' prop
         React-Player works with most popular video sharing urls. Just plug it in, as below
         */
-        <ReactPlayer className='video_player' controls url={props.video_url} />
+        <ReactPlayer className='video_player' controls url={props.video_url} width="80vw" height="55vh"/>
     )
 }

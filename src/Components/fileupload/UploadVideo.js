@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import Modal from 'react-modal';
-import {Link} from 'react-router-dom';
+import './fileupload.css'
 
 //tells the modal where to attach and render
 Modal.setAppElement('#root')
 const PORT = process.env.PORT || 5001
 const SERVER = process.env.SERVER || 'localhost'
 
-function UploadVideo() {
+function UploadVideo(props) {
     const [file, setFile] = useState()
     const [modalIsOpen, setIsOpen] = useState(false);
     const [fileName, setFileName] = useState('')
@@ -46,7 +46,7 @@ function UploadVideo() {
             "Content-Type": "application/json",
             },
             body: JSON.stringify({ 
-                user_id: 1,
+                user_id: props.userdata.user_id,
                 title: fileName,
                 video_url: imageUrl, 
                 thumbnail_url: 'https://ds956fhn2jvzk.cloudfront.net/boomtubelogo.png',
@@ -72,6 +72,8 @@ function UploadVideo() {
             {/* <button onClick={openModal}>Upload Video</button>    */}
             <div to="/" onClick={openModal} className="uploadBtn">Upload</div>
                 <Modal contentLabel={"Upload new Avatar JPEG"} 
+                className="videoModal"
+                overlayClassName="videoOverlay"
                 shouldFocusAfterRender={true}
                 shouldReturnFocusAfterClose={true}
                 parentSelector={() => document.body}

@@ -9,27 +9,27 @@ const Footer = () => {
         <footer>
             <p id="createdBy">Created by:</p>
             <div id="profiles">
-                <div id="price-div">
+                <div id="named-div">
                     <p>Christopher Price</p>
                     <a href="https://www.linkedin.com/in/karmacausey/" target="blank"><LinkedInIcon /></a>
                     <a href="https://github.com/karmacausey" target="blank"><GitHubIcon /></a>
                 </div>
-                <div id="warren-div">
+                <div id="named-div">
                     <p>Aaron Warren</p>
                     <a href="https://www.linkedin.com/in/aaron-m-warren/" target="blank"><LinkedInIcon /></a>
                     <a href="https://github.com/AMWARREN21" target="blank"><GitHubIcon /></a>
                 </div>
-                <div id="nichols-div">
+                <div id="named-div">
                     <p>George Nichols</p>
                     <a href="https://www.linkedin.com/in/georgehniii/" target="blank"><LinkedInIcon /></a>
                     <a href="https://github.com/georgehniii" target="blank"><GitHubIcon /></a>
                 </div>
-                <div id="miller-div">
+                <div id="named-div">
                     <p>Thomas Miller</p>
                     <a href="https://www.linkedin.com/in/thomas-miller-fse/" target="blank"><LinkedInIcon /></a>
                     <a href="https://github.com/T-Miller94" target="blank"><GitHubIcon /></a>
                 </div>
-                <div id="odell-div">
+                <div id="named-div">
                     <p>Wayne Odell</p>
                     <a href="https://www.linkedin.com/in/wayne-odell/" target="blank"><LinkedInIcon /></a>
                     <a href="https://github.com/treyodell8" target="blank"><GitHubIcon /></a>

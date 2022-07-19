@@ -1,15 +1,17 @@
 .HeaderContainer {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     background-color: #ff6600;
-    padding: 7px;
+    padding: 0px;
     padding-top: 3px;
     padding-bottom: 45px;
     width: 100%;
 }
 .HeaderLogo {
-    width: 85px;
-    height: 85px;
+    margin-left: 5px;
+    height: 57px;
+    width: 70px;
 }
 .navbarContainer{
   display: flex;
@@ -66,8 +68,12 @@
     background-color: #595959;
     color: #ddd;
   }
-.HeaderAvatarContainer {
-  align-content: right;
 
+.HeaderAvatarContainer {
+  margin-right: 5px;
+  align-content: right;
 }
-  
+
+.avatar {
+  height: 50px;
+}
